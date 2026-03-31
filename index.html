@@ -698,7 +698,14 @@
         * T1: Transport a glass into a refrigerator. T2: Place an apple into a refrigerator. T3: Transfer an apple into a bowl. T4: Place a cup onto a table.<br>
         * Number of demos per task:<br>
         &nbsp;&nbsp;M1: 10 (T1–4), 36 (T5), 66 (T6)&nbsp;&nbsp;|&nbsp;&nbsp;M2: 10 (T1–4)&nbsp;&nbsp;|&nbsp;&nbsp;M3: 20 (T1–4), 80 (T5, 6)&nbsp;&nbsp;|&nbsp;&nbsp;M4: 10 (T1–4), 40 (T5, 6)&nbsp;&nbsp;|&nbsp;&nbsp;M5: 1 (T1–6)<br>
-        * RoboGen+RL (M5) requires excessive training time (48h+ total).
+        * RoboGen+RL (M5) requires excessive training time (48h+ total).<br>
+        * T5/T6 task breakdown (Success Rate / Task Progress):<br>
+        &nbsp;&nbsp;<strong>M3 (GenSim2, 20 demos each):</strong>
+        T5 Open/Close — OpenRefrigeratorDoor 100/100, CloseRefrigeratorDoor 100/100, OpenDrawer 100/100, PushDrawerClose 100/100;&nbsp;&nbsp;
+        T6 Pick/Place — DropAppleIntoDrawer 85/95.0, MoveCupIntoDrawer 0/70.0, DropAppleIntoBox 60/92.5, PlaceCrackerBoxIntoRefrigerator 10/70.8<br>
+        &nbsp;&nbsp;<strong>M4 (RoboGen, 10 demos each):</strong>
+        T5 Open/Close — Open Microwave 0/47.5, Open Refrigerator 0/51.7, Open Door 0/51.7, Open Laptop 0/50.0;&nbsp;&nbsp;
+        T6 Pick/Place — Pick up a bottle 0/42.5, Pick up a phone 0/40.5, Pick up a mouse 0/38.3, Pick up a USB 0/50.0
       </p>
     </div>
 
