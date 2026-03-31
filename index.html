@@ -468,15 +468,6 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <!-- Arxiv Link -->
-              <span class="link-block">
-                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark button-gap">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
               <!-- Code Link -->
               <span class="link-block">
                 <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark button-gap">
@@ -496,6 +487,7 @@
   </div>
 </section>
 
+
 <!-- Abstract Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -504,10 +496,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Training robotic policies directly in the real world is expensive and unscalable. Although generative simulation enables large-scale data synthesis, current approaches often fail to generate logically coherent long-horizon tasks and struggle with dynamic physical uncertainties due to open-loop execution. 
-          </p>
-          <p>
-            To address these challenges, we propose <strong>Affordance-Graphed Task Worlds (AGT-World)</strong>, a unified framework that autonomously constructs interactive simulated environments and corresponding robot task policies based on real-world observations. Unlike methods relying on random proposals or static replication, AGT-World formalizes the task space as a structured graph, enabling the precise, hierarchical decomposition of complex goals into theoretically grounded atomic primitives. Furthermore, we introduce a Self-Evolution mechanism with hybrid feedback to autonomously refine policies, combining Vision-Language Model reasoning and geometric verification. Extensive experiments demonstrate that our method significantly outperforms in success rates and generalization, achieving a self-improving cycle of proposal, execution, and correction for scalable robot learning.
+             We propose <strong>Affordance-Graphed Task Worlds (AGT-World)</strong>, a unified framework that autonomously constructs interactive simulated environments and corresponding robot task policies based on real-world observations. Unlike methods relying on random proposals or static replication, AGT-World formalizes the task space as a structured graph, enabling the precise, hierarchical decomposition of complex goals into theoretically grounded atomic primitives. Furthermore, we introduce a Self-Evolution mechanism with hybrid feedback to autonomously refine policies, combining Vision-Language Model reasoning and geometric verification. Extensive experiments demonstrate that our method significantly outperforms in success rates and generalization, achieving a self-improving cycle of proposal, execution, and correction for scalable robot learning.
           </p>
         </div>
       </div>
@@ -519,6 +508,7 @@
 </div>
 </div>
 
+
 <!-- Pipeline Section (PDF Embedding) -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -529,11 +519,198 @@
   </div>
 </section>
 
+
+<!-- Section: Policy Evaluation Results -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Policy Evaluation Results</h2>
+
+    <!-- BC Architecture -->
+    <div class="content has-text-centered" style="margin-top: 30px;">
+      <p>Our overall Behavior Cloning training architecture:</p>
+      <img src="assets/training/structure.png" style="width: 100%; border-radius: 10px;">
+    </div>
+
+    <!-- Training Curves -->
+    <div class="content has-text-centered" style="margin-top: 40px;">
+      <p>Training curves:</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <img src="assets/training/training1.png" style="width: 100%; border-radius: 8px; border: 1px solid #ddd;">
+        <img src="assets/training/training2.png" style="width: 100%; border-radius: 8px; border: 1px solid #ddd;">
+      </div>
+    </div>
+
+    <!-- Eval Rollout Videos -->
+    <div class="content has-text-centered" style="margin-top: 40px;">
+      <p>Evaluation rollout results:</p>
+      <div class="gray-box-container">
+        <div class="video-grid-3">
+          <div class="video-wrapper">
+            <h4>Global View</h4>
+            <video autoplay muted loop playsinline controls>
+              <source src="assets/training/eval_rollout_viewer.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <h4>Overhead View</h4>
+            <video autoplay muted loop playsinline controls>
+              <source src="assets/training/eval_rollout_ext.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <h4>Wrist View</h4>
+            <video autoplay muted loop playsinline controls>
+              <source src="assets/training/eval_rollout_wrist.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eval Success Rate Table -->
+    <div class="content" style="margin-top: 30px; overflow-x: auto;">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.9rem; text-align: center;">
+        <thead>
+          <tr>
+            <th style="text-align: center; background: #f0f4f9;">Task</th>
+            <th style="background: #f0f4f9;">Open Refrigerator</th>
+            <th style="background: #f0f4f9;">Pick Up Glass</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SR (Succ. / All)</strong></td>
+            <td>96.0% (24/25)</td>
+            <td>92.0% (23/25)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="is-size-7" style="color: #555; margin-top: 6px;">
+        * Trained on 100 demos per task.<br>
+        * Training Setup: 1&times;A800 GPU; Batch Size=1024; Epochs=200; Samples/Epoch=102400; Optimizer=AdamW; Initial LR=4e&#8209;4 with linear decay at epoch 500.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Section: Policy Comparison -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Policy Comparison</h2>
+
+    <!-- Compare Videos -->
+    <div class="gray-box-container" style="margin-top: 20px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px;">
+        <div class="video-wrapper">
+          <h4>GenSim2 (Task 1)</h4>
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/compare/GenSim1_h264.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-wrapper">
+          <h4>GenSim2 (Task 2)</h4>
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/compare/GenSim2_h264.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-wrapper">
+          <h4>RoboGen (Failure)</h4>
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/compare/robogen_failure.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-wrapper">
+          <h4>RoboGen (Success)</h4>
+          <video autoplay muted loop playsinline controls>
+            <source src="assets/compare/robogen_success.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="content" style="margin-top: 40px; overflow-x: auto;">
+      <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.85rem; text-align: center;">
+        <thead>
+          <tr>
+            <th colspan="8" style="text-align: center; background: #f0f4f9;">Task Success Rate (SR %) / Task Progress (%)</th>
+          </tr>
+          <tr>
+            <th style="text-align: center;">Method</th>
+            <th>T1</th>
+            <th>T2</th>
+            <th>T3</th>
+            <th>T4</th>
+            <th>T5.Open/Close</th>
+            <th>T6.Pick/Place</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: left; white-space: nowrap;"><strong>M1: Ours (primitive)</strong></td>
+            <td>0/50</td>
+            <td>0/50</td>
+            <td>40/70</td>
+            <td>0/50</td>
+            <td>66.7/66.7</td>
+            <td><strong>74.2</strong>/74.2</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; white-space: nowrap;"><strong>M2: Ours (prim+Evo)</strong></td>
+            <td><strong>40/84</strong></td>
+            <td><strong>30/79</strong></td>
+            <td><strong>70/93</strong></td>
+            <td><strong>70/85</strong></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; white-space: nowrap;"><strong>M3: GenSim2 (prim)</strong></td>
+            <td>0/73</td>
+            <td>5/78</td>
+            <td>55/91</td>
+            <td>0/68</td>
+            <td><strong>100/100</strong></td>
+            <td>38.8/<strong>82.1</strong></td>
+          </tr>
+          <tr>
+            <td style="text-align: left; white-space: nowrap;"><strong>M4: RoboGen (prim)</strong></td>
+            <td>0/50</td>
+            <td>0/46.5</td>
+            <td>0/50</td>
+            <td>0/50</td>
+            <td>0/50.2</td>
+            <td>0/42.8</td>
+          </tr>
+          <tr>
+            <td style="text-align: left; white-space: nowrap;"><strong>M5: RoboGen (prim+RL)</strong></td>
+            <td>fail</td>
+            <td>fail</td>
+            <td>fail</td>
+            <td>fail</td>
+            <td>success</td>
+            <td>success</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="is-size-7" style="margin-top: 10px; color: #555;">
+        * T1: Transport a glass into a refrigerator. T2: Place an apple into a refrigerator. T3: Transfer an apple into a bowl. T4: Place a cup onto a table.<br>
+        * Number of demos per task:<br>
+        &nbsp;&nbsp;M1: 10 (T1–4), 36 (T5), 66 (T6)&nbsp;&nbsp;|&nbsp;&nbsp;M2: 10 (T1–4)&nbsp;&nbsp;|&nbsp;&nbsp;M3: 20 (T1–4), 80 (T5, 6)&nbsp;&nbsp;|&nbsp;&nbsp;M4: 10 (T1–4), 40 (T5, 6)&nbsp;&nbsp;|&nbsp;&nbsp;M5: 1 (T1–6)<br>
+        * RoboGen+RL (M5) requires excessive training time (48h+ total).
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- Section 1: A Quick Overview of Our Results -->
 <section class="section">
   <div class="container is-max-desktop">
     
-    <h2 class="title is-3 has-text-centered">A Quick Overview of Our Results</h2>
+    <h2 class="title is-3 has-text-centered">A Quick Overview of Task Generation Results</h2>
     
     <div class="gray-box-container">
       <div class="content has-text-justified" style="margin-bottom: 20px;">
