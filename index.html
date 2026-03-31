@@ -544,23 +544,38 @@
     <div class="content has-text-centered" style="margin-top: 40px;">
       <p>Evaluation rollout results:</p>
       <div class="gray-box-container">
-        <div class="video-grid-3">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
           <div class="video-wrapper">
             <h4>Global View</h4>
-            <video autoplay muted loop playsinline controls>
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
               <source src="assets/training/eval_rollout_viewer.mp4" type="video/mp4">
             </video>
           </div>
           <div class="video-wrapper">
             <h4>Overhead View</h4>
-            <video autoplay muted loop playsinline controls>
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
               <source src="assets/training/eval_rollout_ext.mp4" type="video/mp4">
             </video>
           </div>
           <div class="video-wrapper">
             <h4>Wrist View</h4>
-            <video autoplay muted loop playsinline controls>
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
               <source src="assets/training/eval_rollout_wrist.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
+              <source src="assets/training/pickupcup_eval_rollout_viewer.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
+              <source src="assets/training/pickupcup_eval_rollout_ext.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
+              <source src="assets/training/pickupcup_eval_rollout_wrist.mp4" type="video/mp4">
             </video>
           </div>
         </div>
