@@ -520,10 +520,10 @@
 </section>
 
 
-<!-- Section: Policy Evaluation Results -->
+<!-- Section: Downstream Policy Learning Results -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Policy Evaluation Results</h2>
+    <h2 class="title is-3 has-text-centered">Downstream Policy Learning Results</h2>
 
     <!-- BC Architecture -->
     <div class="content has-text-centered" style="margin-top: 30px;">
@@ -587,17 +587,18 @@
       </table>
       <p class="is-size-7" style="color: #555; margin-top: 6px;">
         * Trained on 100 demos per task.<br>
-        * Training Setup: 1&times;A800 GPU; Batch Size=1024; Epochs=200; Samples/Epoch=102400; Optimizer=AdamW; Initial LR=4e&#8209;4 with linear decay at epoch 500.
+        * Training Setup: 1&times;A800 GPU; Batch Size=1024; Epochs=200; Samples/Epoch=102400; Optimizer=AdamW; Initial LR=4e&#8209;4 with linear decay at epoch 500.<br>
+        * Scale_noise of ±0.10 is applied to the XYZ dimensions of objects during each policy evaluation to ensure robustness.
       </p>
     </div>
 
   </div>
 </section>
 
-<!-- Section: Policy Comparison -->
+<!-- Section: Baseline Comparison with Related Work -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Policy Comparison</h2>
+    <h2 class="title is-3 has-text-centered">Baseline Comparison with Related Work</h2>
 
     <!-- Compare Videos -->
     <div class="gray-box-container" style="margin-top: 20px;">
