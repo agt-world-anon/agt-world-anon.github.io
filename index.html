@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="AGT-World: Affordance-Graphed Task Worlds">
+  <meta name="description" content="Scene2Demo: Self-Evolving Task Generation for Scalable Embodied Learning">
   <meta name="keywords" content="Robotics, Embodied AI, Simulation, Task Generation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AGT-World Project Page</title>
+  <title>Scene2Demo Project Page</title>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -428,7 +428,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-2 publication-title">
-            <span class="title-color">AGT-World</span>: Affordance-Graphed Task Worlds
+            <span class="title-color">Scene2Demo</span>: Self-Evolving Task Generation for Scalable Embodied Learning
           </h1>
           <h2 class="subtitle is-3 publication-subtitle subtitle-small">
             🧬 Self-Evolving Task Generation for Scalable Embodied Learning 🤖
@@ -496,7 +496,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-             We propose <strong>Affordance-Graphed Task Worlds (AGT-World)</strong>, a unified framework that autonomously constructs interactive simulated environments and corresponding robot task policies based on real-world observations. Unlike methods relying on random proposals or static replication, AGT-World formalizes the task space as a structured graph, enabling the precise, hierarchical decomposition of complex goals into theoretically grounded atomic primitives. Furthermore, we introduce a Self-Evolution mechanism with hybrid feedback to autonomously refine policies, combining Vision-Language Model reasoning and geometric verification. Extensive experiments demonstrate that our method significantly outperforms in success rates and generalization, achieving a self-improving cycle of proposal, execution, and correction for scalable robot learning.
+             We propose <strong>Scene2Demo</strong>, a unified framework that autonomously constructs interactive simulated environments and corresponding robot task policies based on real-world observations. Unlike methods relying on random proposals or static replication, Scene2Demo formalizes the task space as a structured graph, enabling the precise, hierarchical decomposition of complex goals into theoretically grounded atomic primitives. Furthermore, we introduce a Self-Evolution mechanism with hybrid feedback to autonomously refine policies, combining Vision-Language Model reasoning and geometric verification. Extensive experiments demonstrate that our method significantly outperforms in success rates and generalization, achieving a self-improving cycle of proposal, execution, and correction for scalable robot learning.
           </p>
         </div>
       </div>
@@ -512,7 +512,7 @@
 <!-- Pipeline Section (PDF Embedding) -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">AGT-World Pipeline</h2>
+    <h2 class="title is-3 has-text-centered">Scene2Demo Pipeline</h2>
     <div class="content has-text-centered">
       <img src="assets/pipeline/An introduction of all work.png" style="width: 100%; border-radius: 10px;">
     </div>
@@ -1087,7 +1087,7 @@
           <p class="theory-title">2. Compositional Reachability Theorem</p>
           <p>Based on our probabilistic graph model, we provide a theoretical guarantee for the solvability of generated tasks:</p>
           <div class="notification is-light">
-            <strong>Proposition:</strong> Let \( S_\tau \subset \mathcal{S} \) denote the global world state at time \( \tau \). Assume the <em>AGT-World</em> graph \( G_{S_0} \subset \mathcal{G} \) satisfies:
+            <strong>Proposition:</strong> Let \( S_\tau \subset \mathcal{S} \) denote the global world state at time \( \tau \). Assume the <em>Scene2Demo</em> graph \( G_{S_0} \subset \mathcal{G} \) satisfies:
             <ol style="margin-top: 10px; margin-bottom: 10px; padding-left: 20px;">
               <li><strong>Primitive Completeness:</strong> For any simple task \( T=\langle o_t,o_{s_1},o_{s_2},s_\text{init},s_\text{goal}\rangle, s_\text{init},s_\text{goal}\in \mathcal{S} \), there exists an action flow \( \pi(T)\subset V_{S_0} \text{ s.t. } \mathbb{P}(s_\text{goal} \mid s_\text{init},\pi) > 0 \);</li>
               <li><strong>Connectivity of Context:</strong> For any two consecutive simple tasks \( T_k, T_{k+1} \), if their boundary conditions align (i.e., \( S_\text{goal}^{(k)} \approx S_\text{init}^{(k+1)} \)), there exists an action transfer \( e_k(o_t^{(k)},o_t^{(k+1)}) \subset V_{S_0} \) connecting them with a positive probability \( \mathbb{P}\left(S_\text{init}^{(k+1)} = S_\text{goal}^{(k)+} \mid S_\text{goal}^{(k)},e_k\right) > 0 \).</li>
