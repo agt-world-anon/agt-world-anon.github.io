@@ -19,119 +19,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
   <style>
-    :root {
-      --page-bg: #f4f6fb;
-      --surface: rgba(255, 255, 255, 0.82);
-      --surface-strong: #ffffff;
-      --surface-border: rgba(15, 23, 42, 0.08);
-      --surface-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
-      --surface-shadow-hover: 0 26px 60px rgba(30, 41, 59, 0.14);
-      --text-strong: #0f172a;
-      --text-soft: #475569;
-      --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.14);
-      --accent-gradient: linear-gradient(90deg, #ef4444 0%, #2563eb 55%, #8b5cf6 100%);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* 自定义样式 */
     body {
       font-family: 'Noto Sans', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 28%),
-        linear-gradient(180deg, #f8fbff 0%, var(--page-bg) 100%);
-      color: var(--text-strong);
-      padding-top: 94px;
+      background-color: #fcfcfc;
     }
-
-    .page-progress-shell {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 20;
-      padding: 0 18px 14px;
-      background: rgba(244, 246, 251, 0.88);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-    }
-
-    .scroll-progress-track {
-      position: relative;
-      height: 4px;
-      background: rgba(148, 163, 184, 0.18);
-      overflow: hidden;
-    }
-
-    .scroll-progress-bar {
-      width: 0;
-      height: 100%;
-      background: var(--accent-gradient);
-      transition: width 0.12s linear;
-    }
-
-    .section-nav {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      margin: 12px auto 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-      max-width: 1440px;
-    }
-
-    .section-nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .section-nav-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      background: rgba(255, 255, 255, 0.6);
-      color: var(--text-soft);
-      font-size: 0.84rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
-      text-decoration: none;
-    }
-
-    .section-nav-link:hover,
-    .section-nav-link.is-active {
-      color: var(--text-strong);
-      border-color: rgba(37, 99, 235, 0.26);
-      background: rgba(255, 255, 255, 0.96);
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.12);
-    }
-
-    .section-nav-index {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.8rem;
-      height: 1.8rem;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.06);
-      color: #334155;
-      font-size: 0.72rem;
-      font-weight: 800;
-    }
-
-    .section-nav-link.is-active .section-nav-index {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
     /* 左右箭头容器 */
     .video-slider-container {
       display: flex;
@@ -161,14 +53,13 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      align-items: stretch;
-      gap: 18px;
-      margin-top: 24px;
-      width: 100%;
+      align-items: center;
+      gap: 40px;
+      margin-top: 20px;
     }
 
     .horizontal-menu .vertical-item {
-      width: min(23%, 240px);
+      width: 120px;
       flex-shrink: 1;
     }
 
@@ -195,7 +86,7 @@
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 20px;
-      width: 100%;
+      width: 80%;
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
@@ -208,47 +99,29 @@
 
     /* 灰色大方框容器 */
     .gray-box-container {
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid var(--surface-border);
-      border-radius: 28px;
-      padding: 32px;
-      box-shadow: var(--surface-shadow);
-      backdrop-filter: blur(14px);
+      background-color: #f5f5f5;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     /* 视频容器调整 */
     .video-wrapper {
       text-align: center;
-      background: var(--surface-strong);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      padding: 14px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .video-wrapper h4 {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--text-soft);
+      margin-bottom: 5px;
+      color: #4a4a4a;
     }
 
     .video-wrapper video {
       width: 100%;
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 8px;
+      border: 1px solid #ddd;
       background: #000;
-      display: block;
-    }
-
-    .video-wrapper:hover,
-    .flow-step:hover,
-    .feature-media:hover,
-    .citation-box:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--surface-shadow-hover);
-      border-color: rgba(37, 99, 235, 0.18);
     }
 
     /* 左侧垂直菜单样式 */
@@ -262,41 +135,38 @@
 
     .vertical-item {
       cursor: pointer;
-      border: 1px solid rgba(148, 163, 184, 0.16);
-      border-radius: 20px;
+      border: 3px solid transparent;
+      border-radius: 8px;
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-      opacity: 0.78;
-      background: rgba(255, 255, 255, 0.94);
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      transition: all 0.2s ease;
+      opacity: 0.7;
     }
 
     .vertical-item img {
       width: 100%;
-      height: 132px;
+      height: auto;
       display: block;
       object-fit: cover;
     }
 
     .vertical-item:hover {
       opacity: 1;
-      transform: translateY(-4px);
+      transform: scale(1.02);
     }
 
     .vertical-item.active {
       opacity: 1;
-      border-color: rgba(37, 99, 235, 0.4);
-      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.16);
+      border-color: #3273dc;
+      box-shadow: 0 2px 8px rgba(50, 115, 220, 0.4);
     }
 
     .vertical-caption {
-      background: transparent;
+      background: #fff;
       text-align: center;
       font-size: 0.8rem;
-      padding: 12px 10px 14px;
-      font-weight: 700;
-      color: var(--text-soft);
-      line-height: 1.4;
+      padding: 3px;
+      font-weight: bold;
+      color: #555;
     }
 
     .title-color {
@@ -325,11 +195,11 @@
     }
 
     .section {
-      padding: 3.25rem 1.5rem;
+      padding: 3rem 1.5rem;
     }
 
     .container.is-max-desktop {
-      max-width: min(1380px, calc(100vw - 56px));
+      max-width: 960px;
     }
 
     /* 视频展示区域样式 */
@@ -350,8 +220,8 @@
 
     video {
       width: 100%;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     /* 自定义子任务流水线布局 */
@@ -363,7 +233,6 @@
       gap: 15px;
       margin-top: 30px;
       margin-bottom: 20px;
-      flex-wrap: wrap;
     }
 
     .flow-step {
@@ -372,22 +241,16 @@
       align-items: center;
       width: 180px; /* 固定视频的宽度 */
       text-align: center;
-      padding: 12px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .flow-step video {
       width: 100%;
-      border-radius: 16px;
+      border-radius: 5px;
       margin-bottom: 10px;
     }
 
     .flow-step p {
-      color: var(--text-soft);
+      color: #555;
       font-weight: 500;
       margin-top: 5px;
     }
@@ -425,47 +288,13 @@
 
     /* Citation 样式 */
     .citation-box {
-      background: rgba(255, 255, 255, 0.78);
-      border: 1px solid var(--surface-border);
+      background-color: #f5f5f5;
       padding: 20px;
-      border-radius: 22px;
+      border-radius: 10px;
       font-family: 'Courier New', Courier, monospace;
       font-size: 0.9rem;
       overflow-x: auto;
       white-space: pre-wrap;
-      box-shadow: var(--surface-shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .feature-media {
-      display: block;
-      width: 100%;
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.14);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px;
-      box-shadow: var(--surface-shadow);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .feature-media img {
-      width: 100%;
-      display: block;
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.12);
-    }
-
-    .page-section {
-      scroll-margin-top: 126px;
-    }
-
-    .page-section .title {
-      color: var(--text-strong);
-    }
-
-    .page-section.is-active-section .title.has-text-centered,
-    .page-section.is-active-section .title.is-4 {
-      color: #111827;
     }
 
 /* ==========================================
@@ -545,93 +374,10 @@
       z-index: 2; /* 确保排在背景和渐变层的上面 */
     }
 
-    @media (max-width: 1023px) {
-      body {
-        padding-top: 116px;
-      }
-
-      .horizontal-menu {
-        flex-wrap: wrap;
-      }
-
-      .horizontal-menu .vertical-item {
-        width: calc(50% - 12px);
-      }
-
-      .simple-grid-menu {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .video-grid-2,
-      .video-grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .flow-arrow {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding-top: 124px;
-      }
-
-      .page-progress-shell {
-        padding: 0 10px 12px;
-      }
-
-      .container.is-max-desktop {
-        max-width: calc(100vw - 24px);
-      }
-
-      .section {
-        padding: 2.4rem 0.75rem;
-      }
-
-      .gray-box-container {
-        padding: 20px;
-        border-radius: 22px;
-      }
-
-      .simple-grid-menu {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .section-nav {
-        justify-content: flex-start;
-      }
-
-      .section-nav-link {
-        padding: 10px 12px;
-        font-size: 0.78rem;
-      }
-
-      .vertical-item img {
-        height: 112px;
-      }
-    }
-
   </style>
 </head>
 
 <body>
-
-<div class="page-progress-shell">
-  <div class="scroll-progress-track">
-    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
-  </div>
-  <nav class="section-nav" aria-label="Section navigation">
-    <a class="section-nav-link is-active" href="#overview-section" data-target="overview-section"><span class="section-nav-index">01</span><span>Overview</span></a>
-    <a class="section-nav-link" href="#pipeline-section" data-target="pipeline-section"><span class="section-nav-index">02</span><span>Pipeline</span></a>
-    <a class="section-nav-link" href="#quick-overview-section" data-target="quick-overview-section"><span class="section-nav-index">03</span><span>Quick Results</span></a>
-    <a class="section-nav-link" href="#baseline-section" data-target="baseline-section"><span class="section-nav-index">04</span><span>Baseline</span></a>
-    <a class="section-nav-link" href="#simple-section" data-target="simple-section"><span class="section-nav-index">05</span><span>Simple Tasks</span></a>
-    <a class="section-nav-link" href="#long-horizon-section" data-target="long-horizon-section"><span class="section-nav-index">06</span><span>Long-Horizon</span></a>
-    <a class="section-nav-link" href="#policy-section" data-target="policy-section"><span class="section-nav-index">07</span><span>Policy</span></a>
-    <a class="section-nav-link" href="#citation-section" data-target="citation-section"><span class="section-nav-index">08</span><span>Citation</span></a>
-  </nav>
-</div>
 
 <div class="top-bg-wrapper">
 
@@ -730,7 +476,7 @@
 
 
 <!-- Abstract Section -->
-<section class="section page-section" id="overview-section">
+<section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -751,20 +497,18 @@
 
 
 <!-- Pipeline Section (PDF Embedding) -->
-<section class="section page-section" id="pipeline-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">SCENE2DEMO Pipeline</h2>
     <div class="content has-text-centered">
-      <div class="feature-media">
-        <img src="assets/pipeline/An introduction of all work.png">
-      </div>
+      <img src="assets/pipeline/An introduction of all work.png" style="width: 100%; border-radius: 10px;">
     </div>
   </div>
 </section>
 
 
 <!-- Section: A Quick Overview of Task Generation Results -->
-<section class="section page-section" id="quick-overview-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">A Quick Overview of Task Generation Results</h2>
 
@@ -831,7 +575,7 @@
   </div>
 </section>
 
-<section class="section page-section" id="baseline-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Baseline Comparison with Related Work</h2>
 
@@ -936,7 +680,7 @@
   </div>
 </section>
 
-<section class="section page-section" id="simple-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Automatically Plan and Execute Simple Tasks</h2>
 
@@ -1034,13 +778,11 @@
   </div>
 </section>
 
-<section class="section page-section" id="long-horizon-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Complex Long-horizon Tasks with Self-Evolution</h2>
     <div class="content has-text-centered">
-      <div class="feature-media">
-        <img src="assets/pipeline/Graph-Based Task Generation with Self-Evolution.jpg">
-      </div>
+      <img src="assets/pipeline/Graph-Based Task Generation with Self-Evolution.jpg" style="width: 100%; border-radius: 10px;">
     </div>
   </div>
 
@@ -1167,15 +909,13 @@
   </div>
 </section>
 
-<section class="section page-section" id="policy-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Downstream Policy Learning Results</h2>
 
     <div class="content has-text-centered" style="margin-top: 30px;">
       <p>Our overall Behavior Cloning training architecture:</p>
-      <div class="feature-media">
-        <img src="assets/training/structure.png">
-      </div>
+      <img src="assets/training/structure.png" style="width: 100%; border-radius: 10px;">
     </div>
 
     <div class="content has-text-centered" style="margin-top: 40px;">
@@ -1245,7 +985,7 @@
   </div>
 </section>
 
-<section class="section page-section" id="citation-section">
+<section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Citation</h2>
     <div class="content">
@@ -1491,80 +1231,6 @@
       if(clickedElement) clickedElement.classList.add('is-active');
     }
   }
-
-  function hydrateVideos() {
-    document.querySelectorAll('video').forEach((video) => {
-      video.controls = false;
-      video.muted = true;
-      video.loop = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      video.setAttribute('muted', '');
-      video.setAttribute('loop', '');
-      video.setAttribute('autoplay', '');
-      video.setAttribute('playsinline', '');
-      video.setAttribute('disablePictureInPicture', '');
-      video.play().catch(() => {});
-    });
-  }
-
-  function updateScrollProgress() {
-    const progressBar = document.getElementById('scroll-progress-bar');
-    if (!progressBar) return;
-
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrolled = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-    progressBar.style.width = `${Math.min(100, Math.max(0, scrolled))}%`;
-  }
-
-  function updateActiveSection() {
-    const sections = Array.from(document.querySelectorAll('.page-section[id]'));
-    const navLinks = Array.from(document.querySelectorAll('.section-nav-link'));
-    if (!sections.length || !navLinks.length) return;
-
-    const navOffset = 150;
-    let activeId = sections[0].id;
-
-    sections.forEach((section) => {
-      if (window.scrollY + navOffset >= section.offsetTop) {
-        activeId = section.id;
-      }
-    });
-
-    navLinks.forEach((link) => {
-      const isActive = link.dataset.target === activeId;
-      link.classList.toggle('is-active', isActive);
-    });
-
-    sections.forEach((section) => {
-      section.classList.toggle('is-active-section', section.id === activeId);
-    });
-  }
-
-  function setupSectionNav() {
-    document.querySelectorAll('.section-nav-link').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const targetId = link.dataset.target;
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        event.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  }
-
-  function syncPageChrome() {
-    updateScrollProgress();
-    updateActiveSection();
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    hydrateVideos();
-    setupSectionNav();
-    syncPageChrome();
-    window.addEventListener('scroll', syncPageChrome, { passive: true });
-    window.addEventListener('resize', syncPageChrome);
-  });
 
 
 </script>
