@@ -245,7 +245,12 @@
     .video-wrapper:hover,
     .flow-step:hover,
     .feature-media:hover,
-    .citation-box:hover {
+    .citation-box:hover,
+    .contribution-card:hover,
+    .experiment-summary-card:hover,
+    .policy-training-card:hover,
+    .policy-rollout-shell:hover,
+    .policy-table-shell:hover {
       transform: translateY(-4px);
       box-shadow: var(--surface-shadow-hover);
       border-color: rgba(37, 99, 235, 0.18);
@@ -273,9 +278,11 @@
 
     .vertical-item img {
       width: 100%;
-      height: 132px;
+      aspect-ratio: 1 / 1;
+      height: auto;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.96) 0%, rgba(241, 245, 249, 0.92) 100%);
     }
 
     .vertical-item:hover {
@@ -285,8 +292,16 @@
 
     .vertical-item.active {
       opacity: 1;
-      border-color: rgba(37, 99, 235, 0.4);
-      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.16);
+      transform: translateY(-4px) scale(1.035);
+      border-color: rgba(37, 99, 235, 0.6);
+      box-shadow: 0 22px 42px rgba(37, 99, 235, 0.2);
+      outline: 2px solid rgba(96, 165, 250, 0.35);
+      outline-offset: 2px;
+      background: rgba(255, 255, 255, 0.98);
+    }
+
+    .vertical-item.active .vertical-caption {
+      color: #1d4ed8;
     }
 
     .vertical-caption {
@@ -313,6 +328,128 @@
       color: #4a4a4a;
     }
 
+    .publication-title {
+      max-width: 1080px;
+      margin: 0 auto;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: clamp(2.15rem, 3.7vw, 3.4rem) !important;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .title-line-break {
+      display: block;
+      height: 0.12em;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-heading .title {
+      margin-bottom: 0;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: clamp(1.85rem, 2.3vw, 2.35rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+    }
+
+    .section-heading-bar {
+      display: block;
+      width: 58px;
+      height: 4px;
+      margin: 14px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.24);
+    }
+
+    .overview-panel {
+      position: relative;
+      margin-top: -18px;
+      padding: 38px 42px;
+      border-radius: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 255, 0.8) 100%);
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.1);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .overview-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 32%);
+      pointer-events: none;
+    }
+
+    .overview-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contributions-intro {
+      max-width: 860px;
+      margin: 0 auto 26px;
+      color: var(--text-soft);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    .contributions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .contribution-card {
+      height: 100%;
+      padding: 24px 22px 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contribution-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.4rem;
+      height: 2.4rem;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .contribution-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-strong);
+    }
+
+    .contribution-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+      line-height: 1.72;
+    }
+
     .publication-links {
       display: flex;
       justify-content: center;
@@ -322,6 +459,36 @@
 
     .button-gap {
       margin: 5px; 
+    }
+
+    .button-soft {
+      border: 1px solid transparent !important;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .button-soft:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+      filter: saturate(1.05);
+    }
+
+    .button-arxiv {
+      background: #fde8e8 !important;
+      color: #b42318 !important;
+      border-color: rgba(180, 35, 24, 0.14) !important;
+    }
+
+    .button-paper {
+      background: #e8f1ff !important;
+      color: #1d4ed8 !important;
+      border-color: rgba(29, 78, 216, 0.14) !important;
+    }
+
+    .button-policy {
+      background: #e8f7ec !important;
+      color: #1f7a3d !important;
+      border-color: rgba(31, 122, 61, 0.14) !important;
     }
 
     .section {
@@ -346,6 +513,623 @@
       grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
       margin-bottom: 0px;
+    }
+
+    .tri-view-stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 250px));
+      justify-content: center;
+      gap: 100px;
+    }
+
+    .tri-view-stage .video-wrapper {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .tri-view-stage .video-wrapper video {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .overview-result-grid .video-wrapper,
+    .square-media-card {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .overview-result-grid .video-wrapper video,
+    .square-media-card video {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .simple-video-stage {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 250px));
+      justify-content: center;
+      gap: 100px;
+    }
+
+    .section-divider {
+      width: min(100%, 1080px);
+      height: 0;
+      border-top: 4px solid rgba(148, 163, 184, 0.34);
+      margin: 30px auto 22px;
+    }
+
+    .scene-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .simple-video-stage .video-wrapper {
+      width: 100%;
+    }
+
+    .simple-video-stage .video-wrapper video {
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .compact-scene-strip {
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 16px;
+    }
+
+    .compact-scene-strip .vertical-item {
+      width: min(18%, 182px);
+    }
+
+    .compact-scene-strip .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      margin-bottom: 0;
+      font-size: 2rem;
+      color: #60a5fa;
+      min-width: 26px;
+    }
+
+    .compact-scene-grid {
+      max-width: 1140px;
+      gap: 16px;
+    }
+
+    .simple-scene-grid {
+      max-width: 980px;
+      grid-template-columns: repeat(6, minmax(0, 140px));
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .evolution-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 196px;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .long-horizon-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin: 34px auto 22px;
+    }
+
+    .long-horizon-switcher {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 420px));
+      gap: 16px;
+    }
+
+    .long-horizon-option {
+      padding: 18px 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .long-horizon-option:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    .long-horizon-option.active {
+      border-color: rgba(37, 99, 235, 0.24);
+      background: linear-gradient(180deg, rgba(232, 241, 255, 0.9) 0%, rgba(239, 246, 255, 0.82) 100%);
+      box-shadow: 0 18px 36px rgba(37, 99, 235, 0.12);
+    }
+
+    .long-horizon-option span {
+      margin: 0;
+      color: var(--text-strong);
+      font-size: 0.96rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .scene-switch-cue,
+    .long-horizon-switch-cue,
+    .evolution-up-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .scene-switch-cue {
+      color: #2563eb;
+      margin-left: -150px;
+      animation: cue-float-left 2.4s ease-in-out infinite;
+    }
+
+    .long-horizon-switch-cue {
+      color: #2563eb;
+      animation: cue-float-left 2.4s ease-in-out infinite;
+    }
+
+    .evolution-up-cue {
+      margin-top: 16px;
+      width: 100%;
+      justify-content: center;
+      color: #7c3aed;
+      animation: cue-float-up 2.4s ease-in-out infinite;
+    }
+
+    .cue-arrow-right,
+    .cue-arrow-left,
+    .cue-arrow-up {
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+    }
+
+    .cue-arrow-right {
+      border-top: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .cue-arrow-left {
+      border-bottom: 2px solid currentColor;
+      border-left: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .cue-arrow-up {
+      border-top: 2px solid currentColor;
+      border-left: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .long-example-panel {
+      display: none;
+    }
+
+    .long-example-panel.active {
+      display: block;
+    }
+
+    @keyframes cue-float-right {
+      0%, 100% { transform: translateX(0); opacity: 0.72; }
+      50% { transform: translateX(8px); opacity: 1; }
+    }
+
+    @keyframes cue-float-left {
+      0%, 100% { transform: translateX(0); opacity: 0.72; }
+      50% { transform: translateX(-8px); opacity: 1; }
+    }
+
+    @keyframes cue-float-up {
+      0%, 100% { transform: translateY(0); opacity: 0.72; }
+      50% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    .evolution-media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .evolution-media-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .evolution-video-shell {
+      width: min(100%, 228px);
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      border: 2px solid #8b5cf6;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(245, 243, 255, 0.72) 0%, rgba(237, 233, 254, 0.4) 100%);
+      overflow: hidden;
+    }
+
+    .evolution-video-shell video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      margin: 0 auto;
+      background: #000;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .evolution-side-panel {
+      max-width: 196px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      border: 1px solid rgba(139, 92, 246, 0.16);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 12px 28px rgba(76, 29, 149, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .evolution-side-panel .menu {
+      width: 100%;
+    }
+
+    .evolution-side-panel .menu-label {
+      margin-bottom: 10px;
+      font-weight: 800;
+      color: #4c1d95;
+      letter-spacing: 0.03em;
+    }
+
+    .evolution-side-panel .menu-list a {
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: #5b6472;
+      font-weight: 600;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .evolution-side-panel .menu-list a:hover,
+    .evolution-side-panel .menu-list a.is-active {
+      background: rgba(139, 92, 246, 0.12);
+      color: #6d28d9;
+    }
+
+    .policy-training-layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.92fr) minmax(0, 2.08fr);
+      gap: 28px;
+      align-items: start;
+      margin-top: 18px;
+      margin-bottom: 28px;
+    }
+
+    .policy-training-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .policy-training-card {
+      height: 100%;
+      padding: 22px 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .policy-training-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-strong);
+    }
+
+    .policy-training-card p {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.72;
+      font-size: 0.95rem;
+    }
+
+    .policy-training-card.policy-primary {
+      background: linear-gradient(180deg, rgba(232, 241, 255, 0.9) 0%, rgba(239, 246, 255, 0.78) 100%);
+      border-color: rgba(59, 130, 246, 0.16);
+    }
+
+    .policy-training-card.policy-warm {
+      background: linear-gradient(180deg, rgba(255, 247, 237, 0.92) 0%, rgba(255, 251, 235, 0.82) 100%);
+      border-color: rgba(249, 115, 22, 0.14);
+    }
+
+    .policy-training-card.policy-green {
+      background: linear-gradient(180deg, rgba(236, 253, 245, 0.92) 0%, rgba(240, 253, 244, 0.82) 100%);
+      border-color: rgba(34, 197, 94, 0.14);
+    }
+
+    .experiment-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .experiment-summary-card {
+      padding: 22px 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .experiment-summary-card h3 {
+      margin-bottom: 10px;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-strong);
+    }
+
+    .experiment-summary-card p {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .experiment-summary-card.exp-blue {
+      background: linear-gradient(180deg, rgba(232, 241, 255, 0.9) 0%, rgba(239, 246, 255, 0.78) 100%);
+      border-color: rgba(59, 130, 246, 0.16);
+    }
+
+    .experiment-summary-card.exp-rose {
+      background: linear-gradient(180deg, rgba(255, 241, 242, 0.92) 0%, rgba(255, 245, 245, 0.82) 100%);
+      border-color: rgba(244, 63, 94, 0.14);
+    }
+
+    .experiment-summary-card.exp-gold {
+      background: linear-gradient(180deg, rgba(255, 251, 235, 0.92) 0%, rgba(254, 252, 232, 0.82) 100%);
+      border-color: rgba(245, 158, 11, 0.14);
+    }
+
+    .policy-intro-label {
+      font-size: 1.16rem;
+      font-weight: 800;
+      text-align: left;
+      color: var(--text-strong);
+      margin-bottom: 14px;
+    }
+
+    .policy-results-label {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-align: center;
+      color: var(--text-strong);
+      margin-bottom: 14px;
+    }
+
+    .policy-figure-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .policy-figure-wrap .feature-media {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0 auto;
+    }
+
+    .policy-rollout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px 22px;
+      align-items: start;
+      justify-items: center;
+    }
+
+    .policy-rollout-card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .policy-rollout-shell {
+      width: min(100%, 220px);
+      padding: 6px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(148, 163, 184, 0.28);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .policy-rollout-shell video {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+      box-shadow: none;
+    }
+
+    .policy-rollout-divider {
+      grid-column: 1 / -1;
+      width: calc(100% - 28px);
+      height: 0;
+      border-top: 4px solid rgba(148, 163, 184, 0.34);
+      margin: 4px auto 2px;
+    }
+
+    .policy-rollout-panel,
+    .policy-results-table-shell {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .policy-table-shell {
+      margin-top: 34px;
+      padding: 18px 18px 12px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(248, 250, 252, 0.82) 100%);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .policy-table-shell .table {
+      margin-bottom: 0.75rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .policy-table-shell .table thead th {
+      border: none;
+      background: #eaf2ff;
+      color: #1e3a8a;
+      font-weight: 800;
+    }
+
+    .policy-table-shell .table tbody td {
+      border-color: rgba(148, 163, 184, 0.16);
+      vertical-align: middle;
+    }
+
+    .policy-table-shell .table tbody tr:nth-child(odd) td {
+      background: rgba(248, 250, 252, 0.74);
+    }
+
+    .policy-table-shell .table tbody tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .bibtex-shell {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 22px 22px 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      color: #e2e8f0;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.22);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .bibtex-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .bibtex-header h3 {
+      margin: 0;
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .bibtex-copy {
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(30, 41, 59, 0.92);
+      color: #e2e8f0;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .bibtex-copy:hover {
+      background: rgba(51, 65, 85, 0.96);
+    }
+
+    .bibtex-block {
+      margin: 0;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(2, 6, 23, 0.5);
+      color: #cbd5e1;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+
+    .site-footer {
+      margin-top: 24px;
+      padding: 22px 18px 26px;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      border-top: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .site-footer-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: min(100%, 5000px);
+      padding: 0 18px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .site-footer-link:hover {
+      transform: translateY(-2px);
+      color: #93c5fd;
+    }
+
+    .site-footer-arrow {
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid currentColor;
+      border-left: 2px solid currentColor;
+      transform: rotate(45deg);
+      display: inline-block;
     }
 
     video {
@@ -384,6 +1168,14 @@
       width: 100%;
       border-radius: 16px;
       margin-bottom: 10px;
+    }
+
+    #long-horizon-section .flow-container {
+      gap: 28px;
+    }
+
+    #long-horizon-section .flow-step {
+      width: 222px;
     }
 
     .flow-step p {
@@ -473,11 +1265,13 @@
        ========================================== */
     .top-bg-wrapper {
       position: relative;
-      background-color: #f0f4f9; /* 科技感浅灰蓝色底色 */
+      background:
+        radial-gradient(circle at top center, rgba(96, 165, 250, 0.2), transparent 32%),
+        linear-gradient(180deg, #edf4ff 0%, #f2f6fc 54%, rgba(244, 246, 251, 0.96) 100%);
       padding-bottom: 2rem;
     }
 
-    /* 1. 背景层：层级最低，包含 3D 网格和线框物体 */
+    /* 1. 背景层：层级最低，包含 3D 网格和线框场景 */
     .bg-layer {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -497,44 +1291,227 @@
         linear-gradient(rgba(255, 255, 255, 0.9) 2px, transparent 2px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.9) 2px, transparent 2px);
       background-size: 80px 80px;
-      /* 核心：通过 perspective 和 rotateX 把平面拍倒，形成 3D 地平线纵深感 */
+      opacity: 0.58;
       transform: perspective(1000px) rotateX(72deg);
       transform-origin: top center;
     }
 
-    /* 3D 线框物体通用设置 */
-    .wireframe-obj {
+    .bg-scene-stage {
       position: absolute;
-      opacity: 0.8;
+      top: 118px;
+      left: 10%;
+      right: 2%;
+      display: block;
+      align-items: flex-start;
     }
 
-    /* 给线框加一个轻微的上下浮动动画，更有生机 */
-    .wireframe-obj svg {
-      animation: float-up-down 6s ease-in-out infinite;
+    .bg-world {
+      position: relative;
+      width: min(26vw, 300px);
+      padding: 10px;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.02);
+      backdrop-filter: blur(2px);
+      animation: scene-drift 7.2s ease-in-out infinite;
     }
 
-    @keyframes float-up-down {
+    .world-left {
+      color: rgba(71, 85, 105, 0.7);
+      transform: translate(56px, 90px);
+    }
+
+    .world-right {
+      position: absolute;
+      top: 18px;
+      right: 5%;
+      width: min(38vw, 460px);
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      color: rgba(59, 130, 246, 0.64);
+      animation-delay: -3.4s;
+    }
+
+    .bg-world-label {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .bg-world-kicker {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(51, 65, 85, 0.58);
+    }
+
+    .bg-world-label strong {
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: rgba(15, 23, 42, 0.82);
+    }
+
+    .bg-world-query {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .query-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: rgba(51, 65, 85, 0.64);
+    }
+
+    .query-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      background: rgba(255, 255, 255, 0.72);
+      color: #1d4ed8;
+      font-size: 0.84rem;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+      animation: query-pulse 5.4s ease-in-out infinite;
+    }
+
+    .world-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .world-right .world-svg {
+      filter: drop-shadow(0 14px 28px rgba(59, 130, 246, 0.08));
+    }
+
+    .real-world-svg {
+      color: rgba(71, 85, 105, 0.52);
+    }
+
+    .sim-scene-svg {
+      color: rgba(59, 130, 246, 0.62);
+    }
+
+    .sim-solid {
+      fill: rgba(255, 255, 255, 0.08);
+      stroke: rgba(148, 197, 255, 0.52);
+      stroke-width: 1.8;
+      stroke-linejoin: round;
+    }
+
+    .sim-light {
+      fill: rgba(191, 219, 254, 0.04);
+      stroke: rgba(96, 165, 250, 0.32);
+      stroke-width: 1.45;
+      stroke-linejoin: round;
+    }
+
+    .sim-line {
+      stroke: rgba(191, 219, 254, 0.62);
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sim-faint {
+      opacity: 0.22;
+    }
+
+    .sim-fridge-door {
+      transform-box: fill-box;
+      transform-origin: right center;
+      animation: fridge-door-open 5.4s ease-in-out infinite;
+    }
+
+    .sim-robot-arm {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: arm-reach 5.4s ease-in-out infinite;
+    }
+
+    @keyframes scene-drift {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-12px); }
     }
 
-    /* 凸起的“冰箱”网格位置与大小 */
-    .obj-fridge { top: 20%; left: 15%; }
-    .obj-fridge svg { width: 90px; height: 150px; }
+    .world-left {
+      animation-name: scene-drift-left;
+    }
 
-    /* 凸起的“桌子/操作台”网格位置与大小，让动画错开 */
-    .obj-table { top: 35%; right: 15%; }
-    .obj-table svg { 
-      width: 150px; height: 120px; 
-      animation-delay: -3s; 
+    @keyframes scene-drift-left {
+      0%, 100% { transform: translate(56px, 90px); }
+      50% { transform: translate(56px, 78px); }
+    }
+
+    @keyframes query-pulse {
+      0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
+      }
+      50% {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 28px rgba(37, 99, 235, 0.14);
+      }
+    }
+
+    @keyframes fridge-door-open {
+      0%, 14%, 100% { transform: rotate(0deg) translateX(0); }
+      42%, 72% { transform: skewY(8deg) scaleX(0.42); }
+    }
+
+    @keyframes arm-reach {
+      0%, 14%, 100% { transform: scaleX(-1) translate(0, 0) rotate(0deg); }
+      42%, 72% { transform: scaleX(-1) translate(-18px, -4px) rotate(-8deg); }
+    }
+
+    .hero-scroll-cue {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      margin: 20px auto 0;
+      color: rgba(51, 65, 85, 0.62);
+      text-decoration: none;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: scroll-cue-float 2.4s ease-in-out infinite;
+    }
+
+    .hero-scroll-arrow {
+      width: 14px;
+      height: 14px;
+      border-right: 2px solid rgba(37, 99, 235, 0.62);
+      border-bottom: 2px solid rgba(37, 99, 235, 0.62);
+      transform: rotate(45deg);
+    }
+
+    @keyframes scroll-cue-float {
+      0%, 100% { transform: translateY(0); opacity: 0.72; }
+      50% { transform: translateY(6px); opacity: 1; }
     }
 
     /* 2. 渐变遮罩层：放在背景之上，但文字之下 */
     .bg-fade {
       position: absolute;
       bottom: 0; left: 0; width: 100%; height: 350px;
-      /* 向上透明渐变，平滑过渡到底部的白底 */
-      background: linear-gradient(to bottom, rgba(252,252,252,0) 0%, #fcfcfc 100%);
+      /* 向上透明渐变，平滑过渡到底部页面底色 */
+      background: linear-gradient(to bottom, rgba(244, 246, 251, 0) 0%, rgba(244, 246, 251, 0.78) 70%, var(--page-bg) 100%);
       z-index: 1; 
       pointer-events: none;
     }
@@ -552,6 +1529,59 @@
 
       .horizontal-menu {
         flex-wrap: wrap;
+      }
+
+      .bg-scene-stage {
+        top: 162px;
+        left: 2%;
+        right: -2%;
+        transform: scale(0.82);
+        transform-origin: top center;
+        opacity: 0.3;
+      }
+
+      .contributions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .simple-video-stage,
+      .evolution-media-grid,
+      .policy-training-grid,
+      .experiment-summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .long-horizon-switch-row,
+      .policy-training-layout {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .long-horizon-switcher,
+      .policy-rollout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scene-switch-row {
+        flex-direction: column;
+      }
+
+      .evolution-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .evolution-side-panel {
+        max-width: 100%;
+      }
+
+      .policy-rollout-divider {
+        width: 100%;
+      }
+
+      .policy-rollout-panel,
+      .policy-results-table-shell,
+      .policy-table-shell {
+        width: 100%;
       }
 
       .horizontal-menu .vertical-item {
@@ -594,6 +1624,37 @@
         border-radius: 22px;
       }
 
+      .overview-panel {
+        margin-top: -8px;
+        padding: 28px 20px;
+        border-radius: 24px;
+      }
+
+      .simple-video-stage {
+        gap: 22px;
+      }
+
+      .policy-training-grid {
+        gap: 14px;
+      }
+
+      .bg-scene-stage {
+        display: none;
+      }
+
+      .hero-scroll-cue {
+        margin-top: 12px;
+      }
+
+      .publication-title {
+        max-width: 100%;
+        font-size: clamp(1.95rem, 7.9vw, 2.6rem) !important;
+      }
+
+      .title-line-break {
+        height: 0.06em;
+      }
+
       .simple-grid-menu {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -607,9 +1668,6 @@
         font-size: 0.78rem;
       }
 
-      .vertical-item img {
-        height: 112px;
-      }
     }
 
   </style>
@@ -628,8 +1686,9 @@
     <a class="section-nav-link" href="#baseline-section" data-target="baseline-section"><span class="section-nav-index">04</span><span>Baseline</span></a>
     <a class="section-nav-link" href="#simple-section" data-target="simple-section"><span class="section-nav-index">05</span><span>Simple Tasks</span></a>
     <a class="section-nav-link" href="#long-horizon-section" data-target="long-horizon-section"><span class="section-nav-index">06</span><span>Long-Horizon</span></a>
-    <a class="section-nav-link" href="#policy-section" data-target="policy-section"><span class="section-nav-index">07</span><span>Policy</span></a>
-    <a class="section-nav-link" href="#citation-section" data-target="citation-section"><span class="section-nav-index">08</span><span>Citation</span></a>
+    <a class="section-nav-link" href="#more-results-section" data-target="more-results-section"><span class="section-nav-index">07</span><span>Experiments</span></a>
+    <a class="section-nav-link" href="#policy-section" data-target="policy-section"><span class="section-nav-index">08</span><span>Policy</span></a>
+    <a class="section-nav-link" href="#citation-section" data-target="citation-section"><span class="section-nav-index">09</span><span>Citation</span></a>
   </nav>
 </div>
 
@@ -637,27 +1696,143 @@
 
   <div class="bg-layer">
     <div class="bg-grid-3d"></div>
-    
-    <div class="wireframe-obj obj-fridge">
-      <svg viewBox="0 0 60 100" fill="none" stroke="#ffffff" stroke-width="1.5">
-        <line x1="30" y1="10" x2="30" y2="70" stroke="rgba(255,255,255,0.4)"/>
-        <line x1="0" y1="85" x2="30" y2="70" stroke="rgba(255,255,255,0.4)"/>
-        <line x1="60" y1="85" x2="30" y2="70" stroke="rgba(255,255,255,0.4)"/>
-        <polygon points="30,10 60,25 30,40 0,25" fill="rgba(255,255,255,0.3)"/>
-        <polygon points="0,25 30,40 30,100 0,85" fill="rgba(255,255,255,0.1)"/>
-        <polygon points="30,40 60,25 60,85 30,100" fill="rgba(255,255,255,0.15)"/>
-      </svg>
-    </div>
 
-    <div class="wireframe-obj obj-table">
-      <svg viewBox="0 0 100 80" fill="none" stroke="#ffffff" stroke-width="1.5">
-        <line x1="50" y1="10" x2="50" y2="40" stroke="rgba(255,255,255,0.4)"/>
-        <line x1="0" y1="60" x2="50" y2="40" stroke="rgba(255,255,255,0.4)"/>
-        <line x1="100" y1="60" x2="50" y2="40" stroke="rgba(255,255,255,0.4)"/>
-        <polygon points="50,10 100,30 50,50 0,30" fill="rgba(255,255,255,0.3)"/>
-        <polygon points="0,30 50,50 50,80 0,60" fill="rgba(255,255,255,0.1)"/>
-        <polygon points="50,50 100,30 100,60 50,80" fill="rgba(255,255,255,0.15)"/>
-      </svg>
+    <div class="bg-scene-stage" aria-hidden="true">
+      <div class="bg-world world-left">
+        <svg class="world-svg real-world-svg" viewBox="0 0 520 340" fill="none">
+          <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 298H496" opacity="0.2"/>
+            <path d="M38 48V298" opacity="0.14"/>
+            <path d="M448 44V298" opacity="0.16"/>
+
+            <rect x="34" y="118" width="110" height="164" rx="6"/>
+            <line x1="34" y1="184" x2="144" y2="184"/>
+            <line x1="52" y1="158" x2="52" y2="254"/>
+            <line x1="94" y1="196" x2="122" y2="196"/>
+            <rect x="28" y="280" width="124" height="4" rx="2" opacity="0.18"/>
+
+            <rect x="302" y="100" width="148" height="184" rx="8"/>
+            <line x1="376" y1="100" x2="376" y2="284" opacity="0.82"/>
+            <line x1="365" y1="175" x2="365" y2="218"/>
+            <line x1="388" y1="175" x2="388" y2="218"/>
+            <rect x="300" y="282" width="154" height="4" rx="2" opacity="0.18"/>
+
+            <ellipse cx="220" cy="226" rx="66" ry="20"/>
+            <line x1="194" y1="240" x2="182" y2="296"/>
+            <line x1="220" y1="244" x2="220" y2="296"/>
+            <line x1="245" y1="240" x2="257" y2="296"/>
+            <line x1="177" y1="219" x2="263" y2="219" opacity="0.36"/>
+
+            <path d="M214 196L226 196L230 218L210 218Z"/>
+            <ellipse cx="220" cy="196" rx="6" ry="2.4" opacity="0.56"/>
+            <line x1="220" y1="187" x2="220" y2="196" opacity="0.56"/>
+
+            <path d="M348 73L360 73L364 100L344 100Z"/>
+            <ellipse cx="354" cy="73" rx="6" ry="2.5" opacity="0.56"/>
+            <line x1="354" y1="61" x2="354" y2="73" opacity="0.56"/>
+
+            <path d="M352 234L394 218L432 232L390 248Z"/>
+            <line x1="352" y1="234" x2="346" y2="311"/>
+            <line x1="394" y1="218" x2="394" y2="317"/>
+            <line x1="432" y1="232" x2="444" y2="309"/>
+            <line x1="390" y1="248" x2="388" y2="321"/>
+            <line x1="394" y1="218" x2="394" y2="170"/>
+            <line x1="432" y1="232" x2="432" y2="184"/>
+            <line x1="394" y1="170" x2="430" y2="184"/>
+
+            <path d="M438 66L480 48" opacity="0.18"/>
+            <path d="M436 88L490 66" opacity="0.12"/>
+            <path d="M46 156L96 132" opacity="0.12"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="bg-world world-right">
+        <svg class="world-svg sim-scene-svg" viewBox="0 0 560 360" fill="none">
+          <path class="sim-line sim-faint" d="M28 298H496"/>
+          <path class="sim-line sim-faint" d="M38 48V298"/>
+          <path class="sim-line sim-faint" d="M448 44V298"/>
+
+          <g>
+            <polygon class="sim-light" points="330,102 472,102 472,286 330,286"/>
+            <polygon class="sim-solid" points="330,102 384,86 524,86 472,102"/>
+            <polygon class="sim-light" points="472,102 524,86 524,270 472,286"/>
+            <line class="sim-line" x1="402" y1="102" x2="402" y2="286" opacity="0.5"/>
+            <line class="sim-line" x1="390" y1="178" x2="390" y2="221"/>
+            <line class="sim-line" x1="413" y1="178" x2="413" y2="221"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="202,218 266,203 310,214 246,229"/>
+            <line class="sim-line" x1="220" y1="224" x2="206" y2="300"/>
+            <line class="sim-line" x1="246" y1="229" x2="246" y2="304"/>
+            <line class="sim-line" x1="288" y1="221" x2="300" y2="300"/>
+            <line class="sim-line" x1="202" y1="218" x2="266" y2="203"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="238,194 250,194 254,221 234,221"/>
+            <ellipse class="sim-light" cx="244" cy="194" rx="6" ry="2.4"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="394,73 406,73 410,102 390,102"/>
+            <ellipse class="sim-light" cx="400" cy="73" rx="6" ry="2.5"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="388,236 430,220 468,234 426,250"/>
+            <line class="sim-line" x1="388" y1="236" x2="382" y2="317"/>
+            <line class="sim-line" x1="430" y1="220" x2="430" y2="322"/>
+            <line class="sim-line" x1="468" y1="234" x2="480" y2="312"/>
+            <line class="sim-line" x1="426" y1="250" x2="424" y2="326"/>
+            <line class="sim-line" x1="430" y1="220" x2="430" y2="173"/>
+            <line class="sim-line" x1="468" y1="234" x2="468" y2="186"/>
+            <line class="sim-line" x1="430" y1="173" x2="466" y2="186"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="24,118 114,118 114,282 24,282"/>
+            <polygon class="sim-solid" points="24,118 52,102 140,102 114,118"/>
+            <polygon class="sim-light" points="114,118 140,102 140,266 114,282"/>
+            <rect class="sim-light" x="88" y="132" width="16" height="136" rx="2"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="104,130 114,130 114,266 104,266"/>
+            <line class="sim-line" x1="114" y1="172" x2="104" y2="172" opacity="0.4"/>
+            <line class="sim-line" x1="114" y1="216" x2="104" y2="216" opacity="0.4"/>
+          </g>
+
+          <g class="sim-fridge-door">
+            <polygon class="sim-solid" points="24,118 104,118 104,282 24,282"/>
+            <line class="sim-line" x1="40" y1="176" x2="40" y2="244"/>
+            <line class="sim-line" x1="24" y1="184" x2="104" y2="184" opacity="0.45"/>
+          </g>
+
+          <g>
+            <polygon class="sim-light" points="82,294 134,280 134,322 82,322"/>
+            <polygon class="sim-solid" points="82,294 98,284 152,284 134,280"/>
+            <polygon class="sim-light" points="134,280 152,284 152,328 134,322"/>
+            <line class="sim-line" x1="98" y1="302" x2="98" y2="326"/>
+            <line class="sim-line" x1="122" y1="296" x2="122" y2="324"/>
+          </g>
+
+          <g class="sim-robot-arm">
+            <path class="sim-line" d="M74 284L74 268"/>
+            <ellipse class="sim-solid" cx="74" cy="260" rx="14" ry="9"/>
+            <path class="sim-line" d="M74 260L74 224"/>
+            <circle class="sim-solid" cx="74" cy="220" r="11"/>
+            <path class="sim-line" d="M74 220L96 198"/>
+            <circle class="sim-solid" cx="98" cy="196" r="9"/>
+            <path class="sim-line" d="M98 196L122 187"/>
+            <path class="sim-line" d="M122 187L134 191"/>
+            <path class="sim-line" d="M134 191L144 201"/>
+            <path class="sim-line" d="M134 189L146 185"/>
+            <path class="sim-line" d="M134 193L146 197"/>
+          </g>
+        </svg>
+      </div>
     </div>
   </div>
 
@@ -672,7 +1847,9 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-2 publication-title">
-            <span class="title-color">SCENE2DEMO</span>: Self-Evolving Embodied Data Generation via Object-Action Graph
+            <span class="title-color">SCENE2DEMO</span>: Self-Evolving Embodied Data Generation
+            <span class="title-line-break"></span>
+            via Object-Action Graph
           </h1>
           
           <!-- Authors & Institution -->
@@ -702,7 +1879,15 @@
             <div class="publication-links">
               <!-- PDF Link -->
               <span class="link-block">
-                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark button-gap">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded button-soft button-arxiv button-gap">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded button-soft button-paper button-gap">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
@@ -711,11 +1896,19 @@
               </span>
               <!-- Code Link -->
               <span class="link-block">
-                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark button-gap">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded is-dark button-soft button-gap">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" target="_blank" class="external-link button is-normal is-rounded button-soft button-policy button-gap">
+                  <span class="icon">
+                      <i class="fas fa-robot"></i>
+                  </span>
+                  <span>Policy Weights</span>
                 </a>
               </span>
             </div>
@@ -728,19 +1921,46 @@
   </div>
 </section>
 
-
 <!-- Abstract Section -->
 <section class="section page-section" id="overview-section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-             We present <strong>Scene2Demo</strong>, a self-evolving framework for offline embodied data generation. Given a single real-world RGB image and a user query, Scene2Demo constructs an interactive simulated scene and generates executable task configurations, multi-view execution videos, and offline robot-learning datasets. Scene2Demo uses a structured multi-module workflow via an object-action graph, representing task generation through object-centric configurations and action transitions. Failed or incomplete executions are further refined by feedback agents that inspect visual rollouts and revise action flows through sequence modification or parameter adjustment. Across 102 automatically generated primitive scene-task pairs, Scene2Demo achieves a 71.6% execution success rate; on four representative long-horizon tasks, self-evolution improves both task success and subtask-level execution quality over primitive-only execution, and baseline comparisons show clear advantages over related work. Downstream behavior cloning policies trained on the generated data achieve 96.0% and 92.0% success on two representative tasks, validating that the generated demonstrations support effective offline policy learning.
-          </p>
-        </div>
+    <div class="overview-panel">
+      <div class="section-heading">
+        <h2 class="title is-3 has-text-centered">Our Contributions</h2>
+        <span class="section-heading-bar" aria-hidden="true"></span>
       </div>
+      <p class="contributions-intro has-text-centered">
+        SCENE2DEMO turns an image and a query into executable embodied task data with structured decomposition and feedback-based refinement.
+      </p>
+      <div class="contributions-grid">
+        <article class="contribution-card">
+          <span class="contribution-index">01</span>
+          <h3>🧩 SCENE2DEMO Framework</h3>
+          <p>
+            A self-evolving framework that turns a real-world image and user query into a simulated scene, executable tasks, and training data.
+          </p>
+        </article>
+        <article class="contribution-card">
+          <span class="contribution-index">02</span>
+          <h3>🔗 Object-Action Graph</h3>
+          <p>
+            An object-action graph that links object states and actions, making long-horizon task decomposition more stable and executable.
+          </p>
+        </article>
+        <article class="contribution-card">
+          <span class="contribution-index">03</span>
+          <h3>🔁 Self-Evolution Loop</h3>
+          <p>
+            A visual-feedback loop that inspects failures and revises action flows for more reliable data generation and imitation learning.
+          </p>
+        </article>
+      </div>
+    </div>
+    <div class="has-text-centered">
+      <a class="hero-scroll-cue" href="#pipeline-section" aria-label="Scroll to pipeline">
+        <span>Scroll</span>
+        <span class="hero-scroll-arrow" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 </section>
@@ -753,7 +1973,10 @@
 <!-- Pipeline Section (PDF Embedding) -->
 <section class="section page-section" id="pipeline-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">SCENE2DEMO Pipeline</h2>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">SCENE2DEMO Pipeline</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
     <div class="content has-text-centered">
       <div class="feature-media">
         <img src="assets/pipeline/An introduction of all work.png">
@@ -766,7 +1989,10 @@
 <!-- Section: A Quick Overview of Task Generation Results -->
 <section class="section page-section" id="quick-overview-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">A Quick Overview of Task Generation Results</h2>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">A Quick Overview of Task Generation Results</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
 
     <div class="gray-box-container">
       <div class="content has-text-justified" style="margin-bottom: 20px;">
@@ -777,7 +2003,7 @@
           <i class="fas fa-chevron-left"></i>
         </button>
 
-        <div class="video-grid-3">
+        <div class="tri-view-stage overview-result-grid">
           <div class="video-wrapper">
             <h4>Global View</h4>
             <video id="complex-global" autoplay muted loop playsinline controls>
@@ -785,8 +2011,8 @@
             </video>
           </div>
           <div class="video-wrapper">
-            <h4>Overhead View</h4>
-            <video id="complex-overhead" autoplay muted loop playsinline controls>
+            <h4>Head View</h4>
+            <video id="complex-head" autoplay muted loop playsinline controls>
               <source src="assets/complex/complex1/overview/overhead.mp4" type="video/mp4">
             </video>
           </div>
@@ -803,28 +2029,36 @@
         </button>
       </div>
 
-      <div class="horizontal-menu" id="complex-menu">
-        <div class="vertical-item active" data-id="1" onclick="changeComplexTask(1)">
-          <img src="assets/complex/complex1/room_with_refrigerator.png" alt="Complex task 1">
-          <div class="vertical-caption">\(\mathcal{T}_1\): "Put the glass into the refrigerator"</div>
-        </div>
-        <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="section-divider" aria-hidden="true"></div>
 
-        <div class="vertical-item" data-id="2" onclick="changeComplexTask(2)">
-          <img src="assets/complex/complex2/modern_kitchen13.png" alt="Complex task 2">
-          <div class="vertical-caption">\(\mathcal{T}_2\): "Put the apple into the refrigerator"</div>
-        </div>
-        <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+      <div class="scene-switch-row">
+        <div class="horizontal-menu compact-scene-strip" id="complex-menu">
+          <div class="vertical-item active" data-id="1" onclick="changeComplexTask(1)">
+            <img src="assets/complex/complex1/room_with_refrigerator.png" alt="Complex task 1">
+            <div class="vertical-caption">\(\mathcal{T}_1\): "Put the glass into the refrigerator"</div>
+          </div>
+          <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
 
-        <div class="vertical-item" data-id="3" onclick="changeComplexTask(3)">
-          <img src="assets/complex/complex3/modern_kitchen2.png" alt="Complex task 3">
-          <div class="vertical-caption">\(\mathcal{T}_3\): "Put the apple into the bowl"</div>
-        </div>
-        <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="vertical-item" data-id="2" onclick="changeComplexTask(2)">
+            <img src="assets/complex/complex2/modern_kitchen13.png" alt="Complex task 2">
+            <div class="vertical-caption">\(\mathcal{T}_2\): "Put the apple into the refrigerator"</div>
+          </div>
+          <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
 
-        <div class="vertical-item" data-id="4" onclick="changeComplexTask(4)">
-          <img src="assets/complex/complex4/modern_kitchen4.png" alt="Complex task 4">
-          <div class="vertical-caption">\(\mathcal{T}_4\): "Put the cup on the table"</div>
+          <div class="vertical-item" data-id="3" onclick="changeComplexTask(3)">
+            <img src="assets/complex/complex3/modern_kitchen2.png" alt="Complex task 3">
+            <div class="vertical-caption">\(\mathcal{T}_3\): "Put the apple into the bowl"</div>
+          </div>
+          <div class="flow-arrow"><i class="fas fa-chevron-right"></i></div>
+
+          <div class="vertical-item" data-id="4" onclick="changeComplexTask(4)">
+            <img src="assets/complex/complex4/modern_kitchen4.png" alt="Complex task 4">
+            <div class="vertical-caption">\(\mathcal{T}_4\): "Put the cup on the table"</div>
+          </div>
+        </div>
+        <div class="scene-switch-cue">
+          <span class="cue-arrow-left" aria-hidden="true"></span>
+          <span>Click to switch</span>
         </div>
       </div>
     </div>
@@ -833,18 +2067,21 @@
 
 <section class="section page-section" id="baseline-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Baseline Comparison with Related Work</h2>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">Baseline Comparison with Related Work</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
 
     <div class="gray-box-container" style="margin-top: 20px;">
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px;">
         <div class="video-wrapper">
-          <h4>GenSim2 (\(\mathcal{T}_1\))</h4>
+          <h4>GenSim2 (Example 1)</h4>
           <video autoplay muted loop playsinline controls>
             <source src="assets/compare/GenSim1_h264.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-wrapper">
-          <h4>GenSim2 (\(\mathcal{T}_2\))</h4>
+          <h4>GenSim2 (Example 2)</h4>
           <video autoplay muted loop playsinline controls>
             <source src="assets/compare/GenSim2_h264.mp4" type="video/mp4">
           </video>
@@ -864,11 +2101,11 @@
       </div>
     </div>
 
-    <div class="content" style="margin-top: 40px; overflow-x: auto;">
-      <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.85rem; text-align: center;">
+    <div class="content policy-table-shell" style="margin-top: 40px; overflow-x: auto;">
+      <table class="table is-bordered is-hoverable is-fullwidth" style="font-size: 0.85rem; text-align: center;">
         <thead>
           <tr>
-            <th colspan="8" style="text-align: center; background: #f0f4f9;">Task Success Rate (SR %) / Subtask-Level Score (%)</th>
+            <th colspan="7" style="text-align: center; background: #eaf2ff; color: #1e3a8a;">Task Success Rate (SR %) / Subtask-Level Score (%)</th>
           </tr>
           <tr>
             <th style="text-align: center;">Method</th>
@@ -938,7 +2175,10 @@
 
 <section class="section page-section" id="simple-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Automatically Plan and Execute Simple Tasks</h2>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">Automatically Plan and Execute Simple Tasks</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
 
     <div class="gray-box-container">
       <div class="content has-text-justified" style="margin-bottom: 20px;">
@@ -949,7 +2189,7 @@
           <i class="fas fa-chevron-left"></i>
         </button>
 
-        <div class="video-grid-2" style="flex: 1; gap: 40px;">
+        <div class="simple-video-stage">
           <div class="video-wrapper">
             <h4>Global View</h4>
             <video id="simple-global-video" autoplay muted loop playsinline controls>
@@ -957,9 +2197,15 @@
             </video>
           </div>
           <div class="video-wrapper">
-            <h4>Overhead View</h4>
-            <video id="simple-overhead-video" autoplay muted loop playsinline controls>
+            <h4>Head View</h4>
+            <video id="simple-head-video" autoplay muted loop playsinline controls>
               <source src="assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/overhead.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <h4>Wrist View</h4>
+            <video id="simple-wrist-video" autoplay muted loop playsinline controls>
+              <source src="assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/wrist.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -969,65 +2215,73 @@
         </button>
       </div>
 
-      <div class="simple-grid-menu" id="simple-menu">
-        <div class="vertical-item active" data-id="1" onclick="switchSimpleTask(1)">
-          <img src="assets/simple/modern_kitchen/modern_kitchen.png" alt="Task 1">
-          <div class="vertical-caption">Open cabinet under microwave</div>
-        </div>
+      <div class="section-divider" aria-hidden="true"></div>
 
-        <div class="vertical-item" data-id="2" onclick="switchSimpleTask(2)">
-          <img src="assets/simple/modern_kitchen2/modern_kitchen2.png" alt="Task 2">
-          <div class="vertical-caption">Pick up the cup</div>
-        </div>
+      <div class="scene-switch-row">
+        <div class="simple-grid-menu compact-scene-grid simple-scene-grid" id="simple-menu">
+          <div class="vertical-item active" data-id="1" onclick="switchSimpleTask(1)">
+            <img src="assets/simple/modern_kitchen/modern_kitchen.png" alt="Task 1">
+            <div class="vertical-caption">Open cabinet under microwave</div>
+          </div>
 
-        <div class="vertical-item" data-id="3" onclick="switchSimpleTask(3)">
-          <img src="assets/simple/modern_kitchen4/modern_kitchen4.png" alt="Task 3">
-          <div class="vertical-caption">Pick up the cup</div>
-        </div>
+          <div class="vertical-item" data-id="2" onclick="switchSimpleTask(2)">
+            <img src="assets/simple/modern_kitchen2/modern_kitchen2.png" alt="Task 2">
+            <div class="vertical-caption">Pick up the cup</div>
+          </div>
 
-        <div class="vertical-item" data-id="4" onclick="switchSimpleTask(4)">
-          <img src="assets/simple/modern_kitchen5/modern_kitchen5.png" alt="Task 4">
-          <div class="vertical-caption">Open refrigerator</div>
-        </div>
+          <div class="vertical-item" data-id="3" onclick="switchSimpleTask(3)">
+            <img src="assets/simple/modern_kitchen4/modern_kitchen4.png" alt="Task 3">
+            <div class="vertical-caption">Pick up the cup</div>
+          </div>
 
-        <div class="vertical-item" data-id="5" onclick="switchSimpleTask(5)">
-          <img src="assets/simple/modern_kitchen8/modern_kitchen8.png" alt="Task 5">
-          <div class="vertical-caption">Open cabinet under bottle</div>
-        </div>
+          <div class="vertical-item" data-id="4" onclick="switchSimpleTask(4)">
+            <img src="assets/simple/modern_kitchen5/modern_kitchen5.png" alt="Task 4">
+            <div class="vertical-caption">Open refrigerator</div>
+          </div>
 
-        <div class="vertical-item" data-id="6" onclick="switchSimpleTask(6)">
-          <img src="assets/simple/modern_kitchen10/modern_kitchen10.png" alt="Task 6">
-          <div class="vertical-caption">Open cabinet under the microwave</div>
-        </div>
+          <div class="vertical-item" data-id="5" onclick="switchSimpleTask(5)">
+            <img src="assets/simple/modern_kitchen8/modern_kitchen8.png" alt="Task 5">
+            <div class="vertical-caption">Open cabinet under bottle</div>
+          </div>
 
-        <div class="vertical-item" data-id="7" onclick="switchSimpleTask(7)">
-          <img src="assets/simple/modern_kitchen11/modern_kitchen11.png" alt="Task 7">
-          <div class="vertical-caption">Open refrigerator</div>
-        </div>
+          <div class="vertical-item" data-id="6" onclick="switchSimpleTask(6)">
+            <img src="assets/simple/modern_kitchen10/modern_kitchen10.png" alt="Task 6">
+            <div class="vertical-caption">Open cabinet under the microwave</div>
+          </div>
 
-        <div class="vertical-item" data-id="8" onclick="switchSimpleTask(8)">
-          <img src="assets/simple/modern_kitchen13/modern_kitchen13.png" alt="Task 8">
-          <div class="vertical-caption">Open refrigerator</div>
-        </div>
+          <div class="vertical-item" data-id="7" onclick="switchSimpleTask(7)">
+            <img src="assets/simple/modern_kitchen11/modern_kitchen11.png" alt="Task 7">
+            <div class="vertical-caption">Open refrigerator</div>
+          </div>
 
-        <div class="vertical-item" data-id="9" onclick="switchSimpleTask(9)">
-          <img src="assets/simple/modern_kitchen14/modern_kitchen14.png" alt="Task 9">
-          <div class="vertical-caption">Pick up half apple on the cabinet</div>
-        </div>
+          <div class="vertical-item" data-id="8" onclick="switchSimpleTask(8)">
+            <img src="assets/simple/modern_kitchen13/modern_kitchen13.png" alt="Task 8">
+            <div class="vertical-caption">Open refrigerator</div>
+          </div>
 
-        <div class="vertical-item" data-id="10" onclick="switchSimpleTask(10)">
-          <img src="assets/simple/modern_studio_apartment_workspace/modern_studio_apartment_workspace.png" alt="Task 10">
-          <div class="vertical-caption">Pick up dice on the table</div>
-        </div>
+          <div class="vertical-item" data-id="9" onclick="switchSimpleTask(9)">
+            <img src="assets/simple/modern_kitchen14/modern_kitchen14.png" alt="Task 9">
+            <div class="vertical-caption">Pick up half apple on the cabinet</div>
+          </div>
 
-        <div class="vertical-item" data-id="11" onclick="switchSimpleTask(11)">
-          <img src="assets/simple/room_with_refrigerator/room_with_refrigerator.png" alt="Task 11">
-          <div class="vertical-caption">Open refrigerator</div>
-        </div>
+          <div class="vertical-item" data-id="10" onclick="switchSimpleTask(10)">
+            <img src="assets/simple/modern_studio_apartment_workspace/modern_studio_apartment_workspace.png" alt="Task 10">
+            <div class="vertical-caption">Pick up dice on the table</div>
+          </div>
 
-        <div class="vertical-item" data-id="12" onclick="switchSimpleTask(12)">
-          <img src="assets/simple/bedroom/bedroom.png" alt="Task 12">
-          <div class="vertical-caption">Pick up glass on the table</div>
+          <div class="vertical-item" data-id="11" onclick="switchSimpleTask(11)">
+            <img src="assets/simple/room_with_refrigerator/room_with_refrigerator.png" alt="Task 11">
+            <div class="vertical-caption">Open refrigerator</div>
+          </div>
+
+          <div class="vertical-item" data-id="12" onclick="switchSimpleTask(12)">
+            <img src="assets/simple/bedroom/bedroom.png" alt="Task 12">
+            <div class="vertical-caption">Pick up glass on the table</div>
+          </div>
+        </div>
+        <div class="scene-switch-cue">
+          <span class="cue-arrow-left" aria-hidden="true"></span>
+          <span>Click to switch</span>
         </div>
       </div>
     </div>
@@ -1036,7 +2290,10 @@
 
 <section class="section page-section" id="long-horizon-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Complex Long-horizon Tasks with Self-Evolution</h2>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">Complex Long-horizon Tasks with Self-Evolution</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
     <div class="content has-text-centered">
       <div class="feature-media">
         <img src="assets/pipeline/Graph-Based Task Generation with Self-Evolution.jpg">
@@ -1044,7 +2301,24 @@
     </div>
   </div>
 
-  <div class="container is-max-desktop" style="margin-top: 60px;">
+  <div class="container is-max-desktop">
+      <div class="long-horizon-switch-row">
+        <div class="long-horizon-switcher">
+          <article class="long-horizon-option active" data-example="1" onclick="switchLongHorizonExample(1)">
+          <span>Example 1: \(\mathcal{T}_1\) Put the glass into the refrigerator</span>
+          </article>
+          <article class="long-horizon-option" data-example="2" onclick="switchLongHorizonExample(2)">
+          <span>Example 2: \(\mathcal{T}_3\) Put the apple into the bowl</span>
+          </article>
+        </div>
+        <div class="long-horizon-switch-cue">
+        <span class="cue-arrow-left" aria-hidden="true"></span>
+        <span>Click to switch</span>
+        </div>
+      </div>
+  </div>
+
+  <div class="container is-max-desktop long-example-panel active" id="long-example-1" style="margin-top: 30px;">
     <h3 class="title is-4">Example 1: \(\mathcal{T}_1\) "Put the glass into the refrigerator"</h3>
     <div class="gray-box-container">
       <div class="flow-container" id="flow-ex1">
@@ -1078,44 +2352,60 @@
 
       <hr style="background-color: #e5e5e5; margin: 40px 0 30px 0;">
 
-      <div class="columns is-centered is-vcentered">
-        <div class="column is-8 has-text-centered">
-          <div class="video-grid-2">
-            <div class="video-wrapper">
-              <video id="evolution-video-1-global" autoplay muted loop playsinline controls style="width: 70%; border: 2px solid #8b5cf6; border-radius: 8px;">
+      <div class="evolution-layout">
+        <div class="has-text-centered">
+          <div class="evolution-media-grid">
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-1-global" autoplay muted loop playsinline controls>
                 <source src="assets/complex/complex1/sub_task_3/demo0_iter2_try0_viewer_cam_sensor.mp4" type="video/mp4">
-              </video>
+                </video>
+              </div>
               <h4 class="is-size-7 mt-1 has-text-weight-bold">Global View</h4>
             </div>
-            <div class="video-wrapper">
-              <video id="evolution-video-1-overhead" autoplay muted loop playsinline controls style="width: 70%; border: 2px solid #8b5cf6; border-radius: 8px;">
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-1-head" autoplay muted loop playsinline controls>
                 <source src="assets/complex/complex1/sub_task_3/demo0_iter2_try0_external_cam0.mp4" type="video/mp4">
-              </video>
-              <h4 class="is-size-7 mt-1 has-text-weight-bold">Overhead View</h4>
+                </video>
+              </div>
+              <h4 class="is-size-7 mt-1 has-text-weight-bold">Head View</h4>
+            </div>
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-1-wrist" autoplay muted loop playsinline controls>
+                <source src="assets/complex/complex1/sub_task_3/demo0_iter2_try0_robot_cam.mp4" type="video/mp4">
+                </video>
+              </div>
+              <h4 class="is-size-7 mt-1 has-text-weight-bold">Wrist View</h4>
             </div>
           </div>
 
           <p id="evolution-caption-1" class="is-italic mt-2">Iteration 2 (Final Success)</p>
         </div>
 
-        <div class="column is-4">
+        <div class="evolution-side-panel">
           <aside class="menu">
-            <p class="menu-label" style="font-weight: bold; color: #555;">Evolution History</p>
+            <p class="menu-label">Evolution History</p>
             <ul class="menu-list" id="evolution-menu-1">
               <li><a onclick="updateEvolution1('iter0', 'Iteration 0: Failed (Collision)', this)">Iteration 0</a></li>
               <li><a onclick="updateEvolution1('iter1', 'Iteration 1: Failed (Grasp Slip)', this)">Iteration 1</a></li>
               <li><a class="is-active" onclick="updateEvolution1('iter2', 'Iteration 2: Success', this)">Iteration 2 (Final)</a></li>
             </ul>
           </aside>
+          <div class="evolution-up-cue">
+            <span class="cue-arrow-up" aria-hidden="true"></span>
+            <span>Click to switch</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container is-max-desktop" style="margin-top: 60px;">
+  <div class="container is-max-desktop long-example-panel" id="long-example-2" style="margin-top: 30px;">
     <h3 class="title is-4">Example 2: \(\mathcal{T}_3\) "Put the apple into the bowl"</h3>
     <div class="gray-box-container">
-      <div class="flow-container" id="flow-ex2" style="gap: 80px;">
+      <div class="flow-container" id="flow-ex2">
         <div class="flow-step">
           <video src="assets/complex/complex3/sub_task_1/demo0_iter0_try0_viewer_cam_sensor.mp4" autoplay muted loop playsinline controls></video>
           <p class="is-size-7">1. Pick Up Apple</p>
@@ -1132,36 +2422,88 @@
 
       <hr style="background-color: #e5e5e5; margin: 40px 0 30px 0;">
 
-      <div class="columns is-centered is-vcentered">
-        <div class="column is-8 has-text-centered">
-          <div class="video-grid-2">
-            <div class="video-wrapper">
-              <video id="evolution-video-2-global" autoplay muted loop playsinline controls style="width: 70%; border: 2px solid #8b5cf6; border-radius: 8px;">
+      <div class="evolution-layout">
+        <div class="has-text-centered">
+          <div class="evolution-media-grid">
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-2-global" autoplay muted loop playsinline controls>
                 <source src="assets/complex/complex3/sub_task_2/demo0_iter2_try0_viewer_cam_sensor.mp4" type="video/mp4">
-              </video>
+                </video>
+              </div>
               <h4 class="is-size-7 mt-1 has-text-weight-bold">Global View</h4>
             </div>
-            <div class="video-wrapper">
-              <video id="evolution-video-2-overhead" autoplay muted loop playsinline controls style="width: 70%; border: 2px solid #8b5cf6; border-radius: 8px;">
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-2-head" autoplay muted loop playsinline controls>
                 <source src="assets/complex/complex3/sub_task_2/demo0_iter2_try0_external_cam0.mp4" type="video/mp4">
-              </video>
-              <h4 class="is-size-7 mt-1 has-text-weight-bold">Overhead View</h4>
+                </video>
+              </div>
+              <h4 class="is-size-7 mt-1 has-text-weight-bold">Head View</h4>
+            </div>
+            <div class="video-wrapper evolution-media-card">
+              <div class="evolution-video-shell">
+                <video id="evolution-video-2-wrist" autoplay muted loop playsinline controls>
+                <source src="assets/complex/complex3/sub_task_2/demo0_iter2_try0_robot_cam.mp4" type="video/mp4">
+                </video>
+              </div>
+              <h4 class="is-size-7 mt-1 has-text-weight-bold">Wrist View</h4>
             </div>
           </div>
 
           <p id="evolution-caption-2" class="is-italic mt-2">Iteration 2 (Final Success)</p>
         </div>
 
-        <div class="column is-4">
+        <div class="evolution-side-panel">
           <aside class="menu">
-            <p class="menu-label" style="font-weight: bold; color: #555;">Evolution History</p>
+            <p class="menu-label">Evolution History</p>
             <ul class="menu-list" id="evolution-menu-2">
               <li><a onclick="updateEvolution3('iter0', 'Iteration 0: Failed', this)">Iteration 0</a></li>
               <li><a onclick="updateEvolution3('iter1', 'Iteration 1: Failed', this)">Iteration 1</a></li>
               <li><a class="is-active" onclick="updateEvolution3('iter2', 'Iteration 2: Success', this)">Iteration 2 (Final)</a></li>
             </ul>
           </aside>
+          <div class="evolution-up-cue">
+            <span class="cue-arrow-up" aria-hidden="true"></span>
+            <span>Click to switch</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section page-section" id="more-results-section">
+  <div class="container is-max-desktop">
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">More Experimental Results</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
+
+    <div class="experiment-summary-grid">
+      <article class="experiment-summary-card exp-blue">
+        <h3>Stable Repeated Decomposition</h3>
+        <p>
+          Repeated runs on the same instruction produce the same executable subtask structure, while unconstrained baselines vary more across trials.
+        </p>
+      </article>
+      <article class="experiment-summary-card exp-rose">
+        <h3>Practical Offline Generation Cost</h3>
+        <p>
+          Simple tasks finish in roughly minutes, and long-horizon demonstrations usually complete in 15 to 30 minutes including self-evolution iterations.
+        </p>
+      </article>
+      <article class="experiment-summary-card exp-gold">
+        <h3>Multi-view Feedback Matters</h3>
+        <p>
+          Full visual feedback performs best overall, while narrower camera inputs or longer history windows reduce reliability and increase inference cost.
+        </p>
+      </article>
+    </div>
+
+    <div class="content has-text-centered">
+      <div class="feature-media">
+        <img src="assets/more_results.png" alt="Repeated decomposition, timing, and ablation study results">
       </div>
     </div>
   </div>
@@ -1169,63 +2511,103 @@
 
 <section class="section page-section" id="policy-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Downstream Policy Learning Results</h2>
-
-    <div class="content has-text-centered" style="margin-top: 30px;">
-      <p>Our overall Behavior Cloning training architecture:</p>
-      <div class="feature-media">
-        <img src="assets/training/structure.png">
-      </div>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">Downstream Policy Learning Results</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
     </div>
 
-    <div class="content has-text-centered" style="margin-top: 40px;">
-      <p>Evaluation rollout results:</p>
-      <div class="gray-box-container">
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-          <div class="video-wrapper">
-            <h4>Global View</h4>
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/eval_rollout_viewer.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-wrapper">
-            <h4>Overhead View</h4>
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/eval_rollout_ext.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-wrapper">
-            <h4>Wrist View</h4>
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/eval_rollout_wrist.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-wrapper">
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/pickupcup_eval_rollout_viewer.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-wrapper">
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/pickupcup_eval_rollout_ext.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="video-wrapper">
-            <video autoplay muted loop playsinline controls style="max-width: 85%; margin: 0 auto; display: block;">
-              <source src="assets/training/pickupcup_eval_rollout_wrist.mp4" type="video/mp4">
-            </video>
+    <div style="margin-top: 30px;">
+      <p class="policy-intro-label">Model Training Inputs and Objectives</p>
+      <div class="policy-training-layout">
+        <div class="policy-training-grid">
+          <article class="policy-training-card policy-primary">
+            <h3>Different Expertise</h3>
+            <p>
+              We train behavior cloning policies using 100 expert demonstrations autonomously generated by SCENE2DEMO, and improve data diversity with randomization on target-object scale and rotation.
+            </p>
+          </article>
+          <article class="policy-training-card policy-warm">
+            <h3>State and Observation Inputs</h3>
+            <p>
+              The policy uses a PointNet encoder for point clouds, fuses the point-cloud features with proprioceptive states, and forms a compact representation for downstream action prediction.
+            </p>
+          </article>
+          <article class="policy-training-card policy-green">
+            <h3>Action Objective</h3>
+            <p>
+              A 4-layer Causal Transformer followed by an action MLP predicts 10-DoF actions (7-DoF arm and gripper control + 3-DoF mobile-base motion).
+            </p>
+          </article>
+        </div>
+        <div class="policy-figure-wrap">
+          <div class="feature-media">
+            <img src="assets/training/structure.png">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="content" style="margin-top: 30px; overflow-x: auto;">
-      <table class="table is-bordered is-striped is-hoverable is-fullwidth" style="font-size: 0.9rem; text-align: center;">
+    <div class="content" style="margin-top: 40px;">
+      <p class="policy-results-label">Evaluation rollout results</p>
+      <div class="gray-box-container policy-rollout-panel">
+        <div class="policy-rollout-grid">
+          <div class="policy-rollout-card">
+            <h4>Global View</h4>
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/eval_rollout_viewer.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="policy-rollout-card">
+            <h4>Head View</h4>
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/eval_rollout_ext.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="policy-rollout-card">
+            <h4>Wrist View</h4>
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/eval_rollout_wrist.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="policy-rollout-divider" aria-hidden="true"></div>
+          <div class="policy-rollout-card">
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/pickupcup_eval_rollout_viewer.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="policy-rollout-card">
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/pickupcup_eval_rollout_ext.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="policy-rollout-card">
+            <div class="policy-rollout-shell">
+              <video autoplay muted loop playsinline controls>
+                <source src="assets/training/pickupcup_eval_rollout_wrist.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content policy-table-shell policy-results-table-shell" style="overflow-x: auto;">
+      <table class="table is-bordered is-hoverable is-fullwidth" style="font-size: 0.9rem; text-align: center;">
         <thead>
           <tr>
-            <th style="text-align: center; background: #f0f4f9;">Task</th>
-            <th style="background: #f0f4f9;">Open Refrigerator</th>
-            <th style="background: #f0f4f9;">Pick Up Glass</th>
+            <th style="text-align: center;">Task</th>
+            <th>Open Refrigerator</th>
+            <th>Pick Up Glass</th>
           </tr>
         </thead>
         <tbody>
@@ -1237,7 +2619,6 @@
         </tbody>
       </table>
       <p class="is-size-7" style="color: #555; margin-top: 6px;">
-        * Trained on 100 demos per task.<br>
         * Training Setup: 1&times;A800 GPU; Batch Size=1024; Epochs=200; Samples/Epoch=102400; Optimizer=AdamW; Initial LR=4e&#8209;4 with linear decay at epoch 500.<br>
         * Scale_noise of ±0.10 is applied to the XYZ dimensions of objects during each policy evaluation to ensure robustness.
       </p>
@@ -1247,13 +2628,36 @@
 
 <section class="section page-section" id="citation-section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Citation</h2>
-    <div class="content">
-      <p>If you use this work or find it helpful, please consider citing:</p>
-      <div class="citation-box">...</div>
+    <div class="section-heading">
+      <h2 class="title is-3 has-text-centered">Citation</h2>
+      <span class="section-heading-bar" aria-hidden="true"></span>
+    </div>
+    <p class="contributions-intro has-text-centered" style="max-width: 760px; margin-bottom: 18px;">
+      If you find this work useful, please consider citing it with the following reference.
+    </p>
+    <div class="bibtex-shell">
+      <div class="bibtex-header">
+        <h3>BibTex</h3>
+        <button class="bibtex-copy" type="button" onclick="copyBibtex()">Copy</button>
+      </div>
+      <pre class="bibtex-block" id="bibtex-content">@inproceedings{anonymous2026scene2demo,
+  title     = {SCENE2DEMO: Self-Evolving Embodied Data Generation via Object-Action Graph},
+  author    = {Anonymous Authors},
+  year      = {2026},
+  booktitle = {Anonymous Submission},
+}</pre>
     </div>
   </div>
 </section>
+
+<footer class="site-footer">
+  <div class="container is-max-desktop has-text-centered">
+    <a class="site-footer-link" href="#">
+      <span class="site-footer-arrow" aria-hidden="true"></span>
+      <span>Click to Return to Top</span>
+    </a>
+  </div>
+</footer>
 
 <script>
   // ==========================================
@@ -1263,22 +2667,22 @@
   const complexTasks = {
     1: {
       global: 'assets/complex/complex1/overview/global.mp4',
-      overhead: 'assets/complex/complex1/overview/overhead.mp4',
+      head: 'assets/complex/complex1/overview/overhead.mp4',
       wrist: 'assets/complex/complex1/overview/wrist.mp4'
     },
     2: {
       global: 'assets/complex/complex2/overview/global.mp4',
-      overhead: 'assets/complex/complex2/overview/overhead.mp4',
+      head: 'assets/complex/complex2/overview/overhead.mp4',
       wrist: 'assets/complex/complex2/overview/wrist.mp4'
     },
     3: {
       global: 'assets/complex/complex3/overview/global.mp4',
-      overhead: 'assets/complex/complex3/overview/overhead.mp4',
+      head: 'assets/complex/complex3/overview/overhead.mp4',
       wrist: 'assets/complex/complex3/overview/wrist.mp4'
     },
     4: {
       global: 'assets/complex/complex4/overview/global.mp4',
-      overhead: 'assets/complex/complex4/overview/overhead.mp4',
+      head: 'assets/complex/complex4/overview/overhead.mp4',
       wrist: 'assets/complex/complex4/overview/wrist.mp4'
     }
   };
@@ -1286,81 +2690,99 @@
   const simpleTasks = {
     'task1': {
       global: 'assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/global.mp4',
-      overhead: 'assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/overhead.mp4'
+      head: 'assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen/Open_Cabinet_Under_Microwave/wrist.mp4'
     },
     'task2': {
       global: 'assets/simple/modern_kitchen2/pick_up_the_cup/global.mp4',
-      overhead: 'assets/simple/modern_kitchen2/pick_up_the_cup/overhead.mp4'
+      head: 'assets/simple/modern_kitchen2/pick_up_the_cup/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen2/pick_up_the_cup/wrist.mp4'
     },
     'task3': {
       global: 'assets/simple/modern_kitchen4/pick_up_the_cup/global.mp4',
-      overhead: 'assets/simple/modern_kitchen4/pick_up_the_cup/overhead.mp4'
+      head: 'assets/simple/modern_kitchen4/pick_up_the_cup/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen4/pick_up_the_cup/wrist.mp4'
     },
     'task4': {
       global: 'assets/simple/modern_kitchen5/open_refrigerator/global.mp4',
-      overhead: 'assets/simple/modern_kitchen5/open_refrigerator/overhead.mp4'
+      head: 'assets/simple/modern_kitchen5/open_refrigerator/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen5/open_refrigerator/wrist.mp4'
     },
     'task5': {
       global: 'assets/simple/modern_kitchen8/open_cabinet_under_bottle/global.mp4',
-      overhead: 'assets/simple/modern_kitchen8/open_cabinet_under_bottle/overhead.mp4'
+      head: 'assets/simple/modern_kitchen8/open_cabinet_under_bottle/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen8/open_cabinet_under_bottle/wrist.mp4'
     },
     'task6': {
       global: 'assets/simple/modern_kitchen10/Open_Cabinet_Under_The_Microwave/global.mp4',
-      overhead: 'assets/simple/modern_kitchen10/Open_Cabinet_Under_The_Microwave/overhead.mp4'
+      head: 'assets/simple/modern_kitchen10/Open_Cabinet_Under_The_Microwave/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen10/Open_Cabinet_Under_The_Microwave/wrist.mp4'
     },
     'task7': {
       global: 'assets/simple/modern_kitchen11/open_refrigerator/global.mp4',
-      overhead: 'assets/simple/modern_kitchen11/open_refrigerator/overhead.mp4'
+      head: 'assets/simple/modern_kitchen11/open_refrigerator/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen11/open_refrigerator/wrist.mp4'
     },
     'task8': {
       global: 'assets/simple/modern_kitchen13/open_refrigerator/global.mp4',
-      overhead: 'assets/simple/modern_kitchen13/open_refrigerator/overhead.mp4'
+      head: 'assets/simple/modern_kitchen13/open_refrigerator/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen13/open_refrigerator/wrist.mp4'
     },
     'task9': {
       global: 'assets/simple/modern_kitchen14/pick_up_half_apple_on_the_cabinet/global.mp4',
-      overhead: 'assets/simple/modern_kitchen14/pick_up_half_apple_on_the_cabinet/overhead.mp4'
+      head: 'assets/simple/modern_kitchen14/pick_up_half_apple_on_the_cabinet/overhead.mp4',
+      wrist: 'assets/simple/modern_kitchen14/pick_up_half_apple_on_the_cabinet/wrist.mp4'
     },
     'task10': {
       global: 'assets/simple/modern_studio_apartment_workspace/pick_up_dice_on_the_table/global.mp4',
-      overhead: 'assets/simple/modern_studio_apartment_workspace/pick_up_dice_on_the_table/overhead.mp4'
+      head: 'assets/simple/modern_studio_apartment_workspace/pick_up_dice_on_the_table/overhead.mp4',
+      wrist: 'assets/simple/modern_studio_apartment_workspace/pick_up_dice_on_the_table/wrist.mp4'
     },
     'task11': {
       global: 'assets/simple/room_with_refrigerator/open_refrigerator/global.mp4',
-      overhead: 'assets/simple/room_with_refrigerator/open_refrigerator/overhead.mp4'
+      head: 'assets/simple/room_with_refrigerator/open_refrigerator/overhead.mp4',
+      wrist: 'assets/simple/room_with_refrigerator/open_refrigerator/wrist.mp4'
     },
     'task12': {
       global: 'assets/simple/bedroom/pick_up_glass_on_the_table/global.mp4',
-      overhead: 'assets/simple/bedroom/pick_up_glass_on_the_table/overhead.mp4'
+      head: 'assets/simple/bedroom/pick_up_glass_on_the_table/overhead.mp4',
+      wrist: 'assets/simple/bedroom/pick_up_glass_on_the_table/wrist.mp4'
     }
   };
 
   const evolutionData1 = {
     'iter0': {
       global: 'assets/complex/complex1/sub_task_3/demo0_iter0_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex1/sub_task_3/demo0_iter0_try0_external_cam0.mp4',
+      head: 'assets/complex/complex1/sub_task_3/demo0_iter0_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex1/sub_task_3/demo0_iter0_try0_robot_cam.mp4',
     },
     'iter1': {
       global: 'assets/complex/complex1/sub_task_3/demo0_iter1_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex1/sub_task_3/demo0_iter1_try0_external_cam0.mp4',
+      head: 'assets/complex/complex1/sub_task_3/demo0_iter1_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex1/sub_task_3/demo0_iter1_try0_robot_cam.mp4',
     },
     'iter2': {
       global: 'assets/complex/complex1/sub_task_3/demo0_iter2_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex1/sub_task_3/demo0_iter2_try0_external_cam0.mp4',
+      head: 'assets/complex/complex1/sub_task_3/demo0_iter2_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex1/sub_task_3/demo0_iter2_try0_robot_cam.mp4',
     }
   };
 
   const evolutionData3 = {
     'iter0': {
       global: 'assets/complex/complex3/sub_task_2/demo0_iter0_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex3/sub_task_2/demo0_iter0_try0_external_cam0.mp4',
+      head: 'assets/complex/complex3/sub_task_2/demo0_iter0_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex3/sub_task_2/demo0_iter0_try0_robot_cam.mp4',
     },
     'iter1': {
       global: 'assets/complex/complex3/sub_task_2/demo0_iter1_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex3/sub_task_2/demo0_iter1_try0_external_cam0.mp4',
+      head: 'assets/complex/complex3/sub_task_2/demo0_iter1_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex3/sub_task_2/demo0_iter1_try0_robot_cam.mp4',
     },
     'iter2': {
       global: 'assets/complex/complex3/sub_task_2/demo0_iter2_try0_viewer_cam_sensor.mp4',
-      overhead: 'assets/complex/complex3/sub_task_2/demo0_iter2_try0_external_cam0.mp4',
+      head: 'assets/complex/complex3/sub_task_2/demo0_iter2_try0_external_cam0.mp4',
+      wrist: 'assets/complex/complex3/sub_task_2/demo0_iter2_try0_robot_cam.mp4',
     }
   };
 
@@ -1377,16 +2799,16 @@
     if (!task) return;
 
     const vGlobal = document.getElementById('complex-global');
-    const vOverhead = document.getElementById('complex-overhead');
+    const vHead = document.getElementById('complex-head');
     const vWrist = document.getElementById('complex-wrist');
 
     vGlobal.src = task.global;
-    vOverhead.src = task.overhead;
+    vHead.src = task.head;
     vWrist.src = task.wrist;
 
     // 修复JS切换视频时的黑屏bug：在切换 src 后强制执行 load()
     vGlobal.load(); vGlobal.play();
-    vOverhead.load(); vOverhead.play();
+    vHead.load(); vHead.play();
     vWrist.load(); vWrist.play();
 
     // 更新底部选中状态 (通过 data-id 查找，不再依赖 this)
@@ -1420,14 +2842,17 @@
     
     if(data) {
       const vGlobal = document.getElementById('simple-global-video');
-      const vOverhead = document.getElementById('simple-overhead-video');
+      const vHead = document.getElementById('simple-head-video');
+      const vWrist = document.getElementById('simple-wrist-video');
       
       vGlobal.src = data.global;
-      vOverhead.src = data.overhead;
+      vHead.src = data.head;
+      vWrist.src = data.wrist;
       
       // 强制重新加载以解决可能的黑屏问题
       vGlobal.load(); vGlobal.play();
-      vOverhead.load(); vOverhead.play();
+      vHead.load(); vHead.play();
+      vWrist.load(); vWrist.play();
     }
 
     // 更新底部选中状态高亮 (红框/蓝框)
@@ -1452,17 +2877,38 @@
     switchSimpleTask(newId);
   }
 
+  function switchLongHorizonExample(exampleId) {
+    document.querySelectorAll('.long-example-panel').forEach((panel) => {
+      panel.classList.remove('active');
+      panel.querySelectorAll('video').forEach((video) => video.pause());
+    });
+    document.querySelectorAll('.long-horizon-option').forEach((option) => {
+      option.classList.remove('active');
+    });
+
+    const panel = document.getElementById(`long-example-${exampleId}`);
+    const option = document.querySelector(`.long-horizon-option[data-example="${exampleId}"]`);
+    if (panel) {
+      panel.classList.add('active');
+      panel.querySelectorAll('video').forEach((video) => video.play().catch(() => {}));
+    }
+    if (option) option.classList.add('active');
+  }
+
   function updateEvolution1(iterId, captionText, clickedElement) {
     const videoPath = evolutionData1[iterId];
     if(videoPath) {
       const vidGlobal = document.getElementById('evolution-video-1-global');
-      const vidOverhead = document.getElementById('evolution-video-1-overhead');
+      const vidHead = document.getElementById('evolution-video-1-head');
+      const vidWrist = document.getElementById('evolution-video-1-wrist');
       
       vidGlobal.src = videoPath.global;
-      vidOverhead.src = videoPath.overhead;
+      vidHead.src = videoPath.head;
+      vidWrist.src = videoPath.wrist;
       
       vidGlobal.load(); vidGlobal.play();
-      vidOverhead.load(); vidOverhead.play();
+      vidHead.load(); vidHead.play();
+      vidWrist.load(); vidWrist.play();
 
       document.getElementById('evolution-caption-1').innerText = captionText;
       
@@ -1476,13 +2922,16 @@
     const videoPath = evolutionData3[iterId];
     if(videoPath) {
       const vidGlobal = document.getElementById('evolution-video-2-global');
-      const vidOverhead = document.getElementById('evolution-video-2-overhead');
+      const vidHead = document.getElementById('evolution-video-2-head');
+      const vidWrist = document.getElementById('evolution-video-2-wrist');
       
       vidGlobal.src = videoPath.global;
-      vidOverhead.src = videoPath.overhead;
+      vidHead.src = videoPath.head;
+      vidWrist.src = videoPath.wrist;
       
       vidGlobal.load(); vidGlobal.play();
-      vidOverhead.load(); vidOverhead.play();
+      vidHead.load(); vidHead.play();
+      vidWrist.load(); vidWrist.play();
 
       document.getElementById('evolution-caption-2').innerText = captionText;
       
@@ -1505,6 +2954,18 @@
       video.setAttribute('playsinline', '');
       video.setAttribute('disablePictureInPicture', '');
       video.play().catch(() => {});
+    });
+  }
+
+  function copyBibtex() {
+    const text = document.getElementById('bibtex-content')?.innerText || '';
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.bibtex-copy');
+      if (!btn) return;
+      const prev = btn.innerText;
+      btn.innerText = 'Copied';
+      setTimeout(() => { btn.innerText = prev; }, 1200);
     });
   }
 
